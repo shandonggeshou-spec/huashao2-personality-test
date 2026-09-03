@@ -276,7 +276,14 @@ function renderQuestion() {
   $("#question-current").textContent = String(current + 1).padStart(2, "0");
   $("#progress-bar").style.width = `${((current + 1) / QUESTIONS.length) * 100}%`;
   $("#scenario").textContent = q.scene;
-  $("#question-text").textContent = q.text;
+  const questionText = $("#question-text");
+  questionText.replaceChildren(...[...q.text].map(character => {
+    if (character !== "回") return document.createTextNode(character);
+    const fallback = document.createElement("span");
+    fallback.className = "question-glyph-fallback";
+    fallback.textContent = character;
+    return fallback;
+  }));
   $("#options").innerHTML = q.options.map((option, index) => `
     <button class="option ${answers[current] === index ? "selected" : ""}" data-index="${index}">
       <span class="option-letter">${String.fromCharCode(65 + index)}</span><span>${option.text}</span>

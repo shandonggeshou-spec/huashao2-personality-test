@@ -97,7 +97,8 @@ h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px;
 .question-card { margin-top: 30px; background: #fffaf2; border: 1px solid var(--line); padding: clamp(28px, 6vw, 62px); box-shadow: var(--shadow); min-height: 490px; position: relative; }
 .question-card::after { content: ""; position: absolute; width: 54px; height: 54px; right: -10px; top: -10px; border-top: 2px solid var(--orange); border-right: 2px solid var(--orange); }
 .scenario { color: var(--orange-dark); font-weight: 700; font-size: 13px; letter-spacing: .12em; margin: 0 0 16px; }
-.question-card h2 { max-width: 100%; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: clamp(26px, 2.5vw, 34px); font-weight: 500; line-height: 1.45; letter-spacing: .01em; overflow-wrap: break-word; margin: 0 0 32px; }
+.question-card h2 { max-width: 100%; font-family: "ZCOOL XiaoWei", "Songti SC", STSong, serif; font-size: clamp(29px, 2.7vw, 38px); font-weight: 400; line-height: 1.38; letter-spacing: .015em; overflow-wrap: break-word; margin: 0 0 32px; }
+.question-glyph-fallback { font-family: "Noto Sans SC", "PingFang SC", sans-serif; font-weight: 400; }
 .options { display: grid; gap: 13px; }
 .option { width: 100%; border: 1px solid #d8ccbc; background: transparent; padding: 17px 20px; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 15px; transition: .2s; line-height: 1.5; }
 .option.selected { color: #fff; background: var(--orange); border-color: var(--orange); }
@@ -198,7 +199,7 @@ textarea { resize: vertical; }
   .question-card { margin-top: 12px; padding: 15px 14px; min-height: 0; box-shadow: 0 12px 32px rgba(75, 47, 30, .11); }
   .question-card::after { width: 34px; height: 34px; right: -5px; top: -5px; }
   .scenario { margin-bottom: 7px; font-size: 10px; letter-spacing: .1em; }
-  .question-card h2 { margin-bottom: 14px; font-size: clamp(21px, 5.8vw, 25px); line-height: 1.32; }
+  .question-card h2 { margin-bottom: 14px; font-size: clamp(23px, 6.2vw, 28px); line-height: 1.3; letter-spacing: 0; }
   .options { gap: 8px; }
   .option { min-height: 52px; padding: 10px 12px; gap: 11px; font-size: 14px; line-height: 1.4; }
   .option:hover { transform: none; }
@@ -224,7 +225,7 @@ textarea { resize: vertical; }
   .quiz-topline { margin-bottom: 5px; }
   .question-card { margin-top: 8px; padding: 11px 12px; }
   .scenario { margin-bottom: 5px; }
-  .question-card h2 { margin-bottom: 10px; font-size: clamp(19px, 5.3vw, 22px); line-height: 1.25; }
+  .question-card h2 { margin-bottom: 10px; font-size: clamp(21px, 5.6vw, 24px); line-height: 1.23; }
   .options { gap: 6px; }
   .option { min-height: 45px; padding: 7px 10px; font-size: 13px; line-height: 1.3; }
   .option-letter { width: 25px; height: 25px; }
