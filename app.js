@@ -190,10 +190,30 @@ const BASE_QUESTIONS = [
     O("不必改变太多，带着好奇心继续体验", ["chen","mao"], {initiative:1, stability:2})])
 ];
 
-const QUESTION_BANK = [...BASE_QUESTIONS, ...(window.EXTRA_QUESTIONS || [])].map((question, index) => ({
+const makeQuestionBank = () => [...BASE_QUESTIONS, ...(window.EXTRA_QUESTIONS || [])].map((question, index) => ({
   ...question, id: `q${String(index + 1).padStart(3, "0")}`
 }));
+let QUESTION_BANK = makeQuestionBank();
 let QUESTIONS = [];
+let extraQuestionsPromise = null;
+
+function loadExtraQuestions() {
+  if (window.EXTRA_QUESTIONS) { QUESTION_BANK = makeQuestionBank(); return Promise.resolve(); }
+  if (extraQuestionsPromise) return extraQuestionsPromise;
+  extraQuestionsPromise = new Promise(resolve => {
+    const script = document.createElement("script");
+    script.src = "questions-extra.js?v=20260904-speed5";
+    script.onload = script.onerror = () => { QUESTION_BANK = makeQuestionBank(); resolve(); };
+    document.head.appendChild(script);
+  });
+  return extraQuestionsPromise;
+}
+
+window.addEventListener("load", () => {
+  const begin = () => loadExtraQuestions();
+  if ("requestIdleCallback" in window) requestIdleCallback(begin, { timeout: 1200 });
+  else window.setTimeout(begin, 600);
+}, { once: true });
 
 function shuffle(items) {
   const copy = [...items];
@@ -294,7 +314,8 @@ function showScreen(id) {
   window.scrollTo(0, 0);
 }
 
-function startQuiz() {
+async function startQuiz() {
+  await loadExtraQuestions();
   QUESTIONS = buildQuestionSet();
   current = 0; answers = []; startedAt = Date.now(); advancing = false;
   showScreen("quiz-screen"); renderQuestion();

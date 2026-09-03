@@ -239,6 +239,7 @@ textarea { resize: vertical; }
   .question-card::after { width: 34px; height: 34px; right: -5px; top: -5px; }
   .scenario { margin-bottom: 7px; font-size: 10px; letter-spacing: .1em; }
   .question-card h2 { margin-bottom: 14px; font-size: clamp(23px, 6.2vw, 28px); line-height: 1.3; letter-spacing: 0; }
+  .question-card h2, .result-main h2, .result-summary, dialog h2 { font-family: "Songti SC", STSong, serif; }
   .options { gap: 8px; }
   .option { min-height: 52px; padding: 10px 12px; gap: 11px; font-size: 14px; line-height: 1.4; }
   .option:hover { transform: none; }
