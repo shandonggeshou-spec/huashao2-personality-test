@@ -256,6 +256,7 @@ const $$ = (selector) => [...document.querySelectorAll(selector)];
 
 function showScreen(id) {
   $$(".screen").forEach(el => el.classList.toggle("active", el.id === id));
+  document.body.dataset.screen = id;
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 

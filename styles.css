@@ -40,7 +40,9 @@ h1 { margin: 24px 0; font-family: "ZCOOL XiaoWei", serif; font-weight: 400; font
 h1 > span { white-space: nowrap; }
 h1 em { color: var(--orange); font-style: normal; white-space: nowrap; position: relative; }
 h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 10px; background: url("data:image/svg+xml,%3Csvg width='300' height='10' viewBox='0 0 300 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 8C68 1 214 1 298 5' fill='none' stroke='%23ed5b3d' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat; }
-.lead { max-width: 650px; font-size: 18px; line-height: 1.9; color: #5e534d; }
+.hero-points { max-width: 650px; margin: 0; padding: 0; list-style: none; font-size: 18px; line-height: 1.9; color: #5e534d; }
+.hero-points li { position: relative; padding-left: 18px; }
+.hero-points li::before { content: "•"; position: absolute; left: 0; color: var(--orange); font-weight: 900; }
 .hero-actions { margin-top: 34px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .primary-button, .outline-button { border: 0; border-radius: 2px; padding: 15px 24px; cursor: pointer; font-weight: 700; transition: transform .2s, box-shadow .2s, background .2s; }
 .primary-button { color: #fff; background: var(--orange); box-shadow: 5px 6px 0 var(--ink); }
@@ -162,15 +164,19 @@ textarea { resize: vertical; }
   .hero-copy { flex: none; }
   .eyebrow { font-size: 12px; gap: 8px; letter-spacing: .14em; }
   h1 { margin: 20px 0 18px; font-size: clamp(34px, 9.7vw, 41px); line-height: 1.12; letter-spacing: -.05em; }
-  .lead { font-size: 15px; line-height: 1.72; }
+  .hero-points { font-size: 14px; line-height: 1.58; }
+  .hero-points li { padding-left: 14px; }
   .hero-actions { margin-top: 24px; gap: 13px; }
   .hero-actions .primary-button { padding: 14px 20px; }
   .hero-actions .primary-button span { margin-left: 24px; }
-  /* Keep the decorative ticket in its own row so it cannot cover the copy. */
-  .hero-visual { height: 92px; width: 100%; min-width: 0; transform: none; margin: 0; }
-  .hero-visual .sun, .hero-visual .route, .hero-visual .postcard, .hero-visual .plane { display: none; }
-  .ticket { top: 8px; right: 8px; bottom: auto; padding: 13px 20px; font-size: 13px; }
-  .ticket span, .ticket strong { font-size: 23px; }
+  /* iPhone keeps the three visual cues, arranged as compact cards below the copy. */
+  .hero-visual { flex: 0 0 106px; height: 106px; width: 100%; min-width: 0; transform: none; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: 8px; }
+  .hero-visual .sun, .hero-visual .route, .hero-visual .plane { display: none; }
+  .hero-visual .postcard { position: relative; inset: auto; width: 100%; height: 82px; padding: 9px 7px; border-width: 4px; transform: none; box-shadow: 0 9px 20px rgba(75, 47, 30, .12); }
+  .hero-visual .postcard::before { inset: 7px; }
+  .hero-visual .postcard b { font-size: clamp(21px, 6.3vw, 27px); line-height: 1; }
+  .hero-visual .postcard small { font-size: 7px; letter-spacing: .08em; }
+  .ticket { display: none; }
 
   .quiz-screen { padding: 14px 12px 24px; min-height: calc(100svh - 66px); }
   .quiz-topline { margin-bottom: 8px; }
@@ -196,6 +202,27 @@ textarea { resize: vertical; }
   .manual-grid { grid-template-columns: 1fr; }
   .result-actions { flex-direction: column; } .result-actions button { width: min(320px, 100%); }
   dialog { padding: 35px 22px 26px; }
+}
+@media (max-width: 680px) and (max-height: 760px) {
+  .site-header { height: 58px; }
+  .brand-mark { width: 32px; height: 32px; font-size: 19px; }
+  .hero-screen { min-height: calc(100svh - 58px); padding-block: 20px 16px; gap: 10px; }
+  h1 { margin-block: 13px 12px; }
+  .hero-actions { margin-top: 16px; }
+  .hero-visual { flex-basis: 88px; height: 88px; }
+  .hero-visual .postcard { height: 72px; }
+  .quiz-screen { min-height: calc(100svh - 58px); padding: 9px 10px 10px; }
+  .quiz-topline { margin-bottom: 5px; }
+  .question-card { margin-top: 8px; padding: 11px 12px; }
+  .scenario { margin-bottom: 5px; }
+  .question-card h2 { margin-bottom: 10px; font-size: clamp(19px, 5.3vw, 22px); line-height: 1.25; }
+  .options { gap: 6px; }
+  .option { min-height: 45px; padding: 7px 10px; font-size: 13px; line-height: 1.3; }
+  .option-letter { width: 25px; height: 25px; }
+  .quiz-controls { margin-top: 6px; }
+}
+@media (max-width: 680px) {
+  body[data-screen="intro-screen"] footer, body[data-screen="quiz-screen"] footer { display: none; }
 }
 @media (max-width: 360px) {
   .site-header { padding: 0 13px; }

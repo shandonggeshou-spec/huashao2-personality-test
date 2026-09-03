@@ -107,6 +107,6 @@ revoke all on public.feedback_overview from anon, authenticated;
 grant select on public.test_result_overview to service_role;
 grant select on public.feedback_overview to service_role;
 
--- 可选：定期执行，落实最长 12 个月的数据保留期。
+-- 可选：按运营需要定期清理历史匿名记录。
 -- delete from public.test_results where created_at < now() - interval '12 months';
 -- delete from public.feedback where created_at < now() - interval '12 months' and status in ('resolved','archived');

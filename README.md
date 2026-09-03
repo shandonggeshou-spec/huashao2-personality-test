@@ -27,7 +27,6 @@ window.APP_CONFIG = {
 
 前端公开 anon key 是 Supabase 的正常用法。`supabase.sql` 已启用 RLS：访客只能新增记录，不能读取、修改或删除数据。测试网站不包含管理入口或管理员登录页；站长使用独立的 Supabase Dashboard 查看 `test_result_overview` 和 `feedback_overview`。
 
-`supabase.sql` 末尾附有 12 个月数据保留期的清理语句。正式运营时由站长定期执行，或在 Supabase 中配置定时任务。
 
 详细配置、权限验收和站长查看方式见 `SUPABASE_SETUP.md`。
 
@@ -69,4 +68,3 @@ git push -u origin main
 - 不要求姓名、手机号、社交账号等身份字段；意见箱不提供联系方式输入项。
 - 不主动采集或保存 IP、城市、精确位置、浏览器指纹等信息。
 - 后台数据只在独立的 Supabase Dashboard 中查看，不在测试网站公开任何管理入口。
-- 正式运营按 `PRIVACY.md` 和数据库注释执行 12 个月数据保留与删除流程。
