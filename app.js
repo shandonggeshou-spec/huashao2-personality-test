@@ -251,19 +251,54 @@ let answers = [];
 let lastResult = null;
 let startedAt = null;
 let advancing = false;
+let avatarPreloadStarted = false;
+let radarRenderToken = 0;
+let avatarExtension = "avif";
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
+const avatarUrl = avatar => `assets/result-avatar-${avatar}.${avatarExtension}`;
+const avatarFallbackUrl = avatar => `assets/result-avatar-${avatar}.png`;
+
+function preloadResultAvatars() {
+  if (avatarPreloadStarted) return;
+  avatarPreloadStarted = true;
+  const urls = Object.values(PROFILES).map(profile => avatarUrl(profile.avatar));
+  let index = 0;
+  const loadNext = () => {
+    if (index >= urls.length) return;
+    const image = new Image();
+    image.decoding = "async";
+    image.fetchPriority = "low";
+    image.onload = () => {
+      index += 1;
+      window.setTimeout(loadNext, 80);
+    };
+    image.onerror = () => {
+      if (avatarExtension === "avif") {
+        avatarExtension = "png";
+        urls.splice(0, urls.length, ...Object.values(PROFILES).map(profile => avatarUrl(profile.avatar)));
+        index = 0;
+      } else index += 1;
+      window.setTimeout(loadNext, 80);
+    };
+    image.src = urls[index];
+  };
+  const begin = () => window.setTimeout(loadNext, 400);
+  if ("requestIdleCallback" in window) requestIdleCallback(begin, { timeout: 1800 });
+  else window.setTimeout(begin, 900);
+}
 
 function showScreen(id) {
   $$(".screen").forEach(el => el.classList.toggle("active", el.id === id));
   document.body.dataset.screen = id;
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo(0, 0);
 }
 
 function startQuiz() {
   QUESTIONS = buildQuestionSet();
   current = 0; answers = []; startedAt = Date.now(); advancing = false;
   showScreen("quiz-screen"); renderQuestion();
+  preloadResultAvatars();
 }
 
 function renderQuestion() {
@@ -332,6 +367,10 @@ function calculate() {
 
 async function finishQuiz() {
   lastResult = calculate();
+  const resultAvatar = new Image();
+  resultAvatar.decoding = "async";
+  resultAvatar.src = avatarUrl(PROFILES[lastResult.primary].avatar);
+  if (resultAvatar.decode) await Promise.race([resultAvatar.decode().catch(() => {}), new Promise(resolve => window.setTimeout(resolve, 180))]);
   // Make the result panel measurable before sizing its canvas.
   showScreen("result-screen"); renderResult(lastResult);
   await persistResult(lastResult);
@@ -344,7 +383,17 @@ function renderResult(result) {
   const maxRank = Math.max(...spectrum.map(([,score]) => score));
   $("#result-id").textContent = `REPORT NO. ${result.id}`;
   const avatar = $("#result-symbol");
-  avatar.textContent = "";
+  const picture = document.createElement("picture");
+  const source = document.createElement("source");
+  const avatarImage = document.createElement("img");
+  source.type = "image/avif";
+  source.srcset = avatarUrl(profile.avatar);
+  avatarImage.src = avatarFallbackUrl(profile.avatar);
+  avatarImage.alt = `${profile.name}的手绘头像`;
+  avatarImage.decoding = "async";
+  avatarImage.fetchPriority = "high";
+  picture.append(source, avatarImage);
+  avatar.replaceChildren(picture);
   avatar.className = `result-symbol result-avatar result-avatar-${profile.avatar}`;
   avatar.setAttribute("role", "img");
   avatar.setAttribute("aria-label", `${profile.name}的手绘头像`);
@@ -357,12 +406,17 @@ function renderResult(result) {
   $("#trait-list").innerHTML = profile.traits.map(([title, text]) => `<div class="trait"><h4>${title}</h4><p>${text}</p></div>`).join("");
   $("#manual-grid").innerHTML = profile.manual.map(([title, text]) => `<div class="manual-item"><small>${title}</small><p>${text}</p></div>`).join("");
   $("#ranking-list").innerHTML = spectrum.map(([id, score]) => `<div class="rank-row"><span>${PROFILES[id].name}</span><div class="rank-track"><i style="width:${Math.round(28 + ((score - minRank) / Math.max(1, maxRank - minRank)) * 72)}%;background:${PROFILES[id].color}"></i></div><strong>${score}</strong></div>`).join("");
-  drawRadar(result.dimensions, profile.color);
+  const renderToken = ++radarRenderToken;
+  const renderRadar = () => { if (renderToken === radarRenderToken) drawRadar(result.dimensions, profile.color); };
+  requestAnimationFrame(() => {
+    if ("requestIdleCallback" in window) requestIdleCallback(renderRadar, { timeout: 350 });
+    else window.setTimeout(renderRadar, 60);
+  });
 }
 
 function drawRadar(values, color) {
   const canvas = $("#radar-canvas");
-  const dpr = window.devicePixelRatio || 1;
+  const dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth <= 680 ? 1.5 : 2);
   const cssWidth = Math.min(520, canvas.parentElement.clientWidth);
   const cssHeight = Math.round(cssWidth * .8);
   canvas.style.width = `${cssWidth}px`; canvas.style.height = `${cssHeight}px`;
