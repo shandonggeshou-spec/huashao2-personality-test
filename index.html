@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;900&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260903-poster">
+  <link rel="stylesheet" href="styles.css?v=20260903-poster2">
 </head>
 <body data-screen="intro-screen">
   <div class="noise" aria-hidden="true"></div>
@@ -36,10 +36,13 @@
           <img class="traveler-lineup" src="assets/traveler-lineup-ink.png" alt="七位旅行团成员的手绘头像" width="790" height="226">
         </div>
         <h1 id="hero-title">七人旅行团里，<br><em>你是哪种人格？</em></h1>
-        <p class="hero-note">每次测试仅 24 道旅行情境题，测出你的团队角色、冲突模式与关系底色。<br>欢迎重复测试，每次可能遇到不同选择场景。</p>
-        <span class="duration-meta">◷&nbsp; 约 1 分钟</span>
+        <ul class="hero-note" aria-label="测试说明">
+          <li>每次测试仅 24 道旅行情境题，测出你的团队角色、冲突模式与关系底色。</li>
+          <li>欢迎重复测试，每次可能遇到不同选择场景。</li>
+        </ul>
         <div class="hero-actions">
           <button class="primary-button" data-action="start">开始测试 <span>→</span></button>
+          <span class="duration-meta">约 1 分钟</span>
         </div>
       </div>
     </section>
@@ -165,6 +168,6 @@
   <div class="toast" id="toast" role="status"></div>
   <script src="config.js"></script>
   <script src="questions-extra.js"></script>
-  <script src="app.js?v=20260903-poster"></script>
+  <script src="app.js?v=20260903-poster2"></script>
 </body>
 </html>

@@ -49,10 +49,12 @@ h1 { margin: 0 0 24px; font-family: "Songti SC", STSong, "Noto Serif CJK SC", se
 h1 > span { white-space: nowrap; }
 h1 em { color: var(--orange); font-style: normal; white-space: nowrap; position: relative; }
 h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 10px; background: url("data:image/svg+xml,%3Csvg width='300' height='10' viewBox='0 0 300 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 8C68 1 214 1 298 5' fill='none' stroke='%23ed5b3d' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat; }
-.hero-note { max-width: 900px; margin: 0; font-family: "Songti SC", STSong, serif; font-weight: 600; font-size: clamp(17px, 2vw, 21px); line-height: 1.75; color: #514841; }
-.duration-meta { display: inline-flex; align-items: center; margin-top: 14px; padding: 7px 13px; border: 1px solid var(--ink); border-radius: 999px; font-size: 13px; color: #514841; }
-.hero-actions { margin-top: 30px; display: flex; align-items: center; }
-.hero-actions .primary-button { position: relative; width: 100%; min-height: 74px; display: flex; align-items: center; justify-content: center; font-size: clamp(22px, 2.5vw, 31px); font-family: "Songti SC", STSong, serif; color: var(--ink); border: 2px solid var(--ink); border-radius: 19px; }
+.hero-note { max-width: 900px; margin: 0; padding: 0; list-style: none; font-family: "Songti SC", STSong, serif; font-weight: 600; font-size: clamp(17px, 2vw, 21px); line-height: 1.75; color: #514841; }
+.hero-note li { position: relative; padding-left: 1em; }
+.hero-note li::before { content: "•"; position: absolute; left: 0; color: var(--orange); }
+.duration-meta { flex: none; color: #8b827b; font-size: 12px; white-space: nowrap; }
+.hero-actions { margin-top: 30px; display: flex; align-items: center; gap: 18px; }
+.hero-actions .primary-button { position: relative; flex: 1; min-height: 74px; display: flex; align-items: center; justify-content: center; font-size: clamp(22px, 2.5vw, 31px); font-family: "Songti SC", STSong, serif; color: var(--ink); border: 2px solid var(--ink); border-radius: 19px; }
 .hero-actions .primary-button span { position: absolute; right: clamp(24px, 5vw, 58px); margin: 0; font-family: sans-serif; font-size: 1.3em; }
 .primary-button, .outline-button { border: 0; border-radius: 2px; padding: 15px 24px; cursor: pointer; font-weight: 700; transition: transform .2s, box-shadow .2s, background .2s; }
 .primary-button { color: #fff; background: var(--orange); box-shadow: 5px 6px 0 var(--ink); }
@@ -175,7 +177,6 @@ textarea { resize: vertical; }
   .traveler-lineup { height: 118px; }
   h1 { font-size: clamp(60px, 5.8vw, 84px); margin-bottom: 15px; }
   .hero-note { font-size: 18px; line-height: 1.55; }
-  .duration-meta { margin-top: 9px; padding-block: 5px; }
   .hero-actions { margin-top: 18px; }
   .hero-actions .primary-button { min-height: 64px; }
 }
@@ -225,7 +226,6 @@ textarea { resize: vertical; }
   .traveler-lineup { height: 110px; }
   h1 { font-size: clamp(37px, 10.5vw, 44px); line-height: 1.02; }
   .hero-note { font-size: 15px; line-height: 1.65; }
-  .duration-meta { margin-top: 11px; }
   .hero-actions { margin-top: 24px; }
   .hero-actions .primary-button { min-height: 66px; }
 }
@@ -240,8 +240,8 @@ textarea { resize: vertical; }
   .traveler-lineup { height: 78px; }
   h1 { margin: 0 0 9px; font-size: clamp(33px, 10.8vw, 39px); line-height: 1.02; }
   .hero-note { font-size: 12px; line-height: 1.48; }
-  .duration-meta { margin-top: 7px; padding: 4px 9px; font-size: 10px; }
-  .hero-actions { margin-top: 10px; }
+  .duration-meta { font-size: 10px; }
+  .hero-actions { margin-top: 10px; gap: 9px; }
   .hero-actions .primary-button { min-height: 48px; padding-block: 8px; border-radius: 13px; font-size: 21px; box-shadow: 4px 5px 0 var(--ink); }
   .quiz-screen { min-height: calc(100svh - 58px); padding: 9px 10px 10px; }
   .quiz-topline { margin-bottom: 5px; }
