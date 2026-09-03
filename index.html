@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="一场基于旅行、协作与冲突情境的花少2人格测试。">
+  <meta property="og:title" content="花路人格局｜你是花少2中的谁？">
+  <meta property="og:description" content="24道旅行情境题，看见你在团队里的真实位置。">
+  <meta name="theme-color" content="#ef5b3f">
+  <title>花路人格局｜你是花少2中的谁？</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;900&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="返回首页">
+      <span class="brand-mark">花</span>
+      <span>花路人格局</span>
+    </a>
+    <nav>
+      <button class="text-button" data-action="open-about">测试说明</button>
+      <button class="outline-button small" data-action="open-feedback">意见箱</button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="screen hero-screen active" id="intro-screen" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> 花少 2 · 旅行人格测试</div>
+        <h1 id="hero-title"><span>如果和六个陌生人</span><br>一起出发，<em>你会是谁？</em></h1>
+        <p class="lead">24 个高浓度旅行现场，测出你的团队角色、冲突模式与关系底色。答案没有好坏，只有你在压力下最自然的选择。</p>
+        <div class="hero-actions">
+          <button class="primary-button" data-action="start">开始测试 <span>→</span></button>
+          <span class="meta">约 5 分钟 · 匿名 · 可重复测试</span>
+        </div>
+        <div class="mini-note">
+          <span class="stamp">非专业量表</span>
+          <p>灵感来自《花儿与少年》第二季中的旅行关系与公开视频解读，仅供娱乐和自我观察。</p>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="七张旅行人格卡片">
+        <div class="sun"></div>
+        <div class="route route-one"></div>
+        <div class="route route-two"></div>
+        <div class="postcard card-one"><b>边界</b><small>BOUNDARY</small></div>
+        <div class="postcard card-two"><b>真心</b><small>HONESTY</small></div>
+        <div class="postcard card-three"><b>秩序</b><small>ORDER</small></div>
+        <div class="ticket"><span>7</span>种人格<br><strong>24</strong>个现场</div>
+        <div class="plane">✦</div>
+      </div>
+    </section>
+
+    <section class="screen quiz-screen" id="quiz-screen" aria-live="polite">
+      <div class="quiz-shell">
+        <div class="quiz-topline">
+          <div>
+            <span class="chapter-kicker" id="chapter-kicker">第一站</span>
+            <strong id="chapter-name">出发之前</strong>
+          </div>
+          <div class="question-count"><span id="question-current">01</span> / 24</div>
+        </div>
+        <div class="progress-track"><span id="progress-bar"></span></div>
+        <article class="question-card">
+          <p class="scenario" id="scenario">旅行情境</p>
+          <h2 id="question-text"></h2>
+          <div class="options" id="options"></div>
+        </article>
+        <div class="quiz-controls">
+          <button class="text-button back-button" data-action="previous">← 上一题</button>
+          <span>凭第一反应作答，更接近真实的你</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen result-screen" id="result-screen" aria-live="polite">
+      <div class="result-shell">
+        <div class="result-heading">
+          <span class="eyebrow"><span></span> 你的旅行人格报告</span>
+          <p class="result-id" id="result-id"></p>
+        </div>
+        <article class="result-hero" id="result-hero">
+          <div class="result-symbol" id="result-symbol"></div>
+          <div class="result-main">
+            <p>你是花少 2 中的</p>
+            <h2 id="result-name"></h2>
+            <h3 id="result-archetype"></h3>
+            <p class="result-summary" id="result-summary"></p>
+          </div>
+          <div class="match-seal"><strong id="match-score">92</strong><span>% MATCH</span></div>
+        </article>
+
+        <div class="result-grid">
+          <section class="panel chart-panel">
+            <div class="panel-title"><span>01</span><h3>你的关系雷达</h3></div>
+            <div class="radar-wrap"><canvas id="radar-canvas" width="520" height="420"></canvas></div>
+          </section>
+          <section class="panel detail-panel">
+            <div class="panel-title"><span>02</span><h3>为什么是 TA</h3></div>
+            <div class="trait-list" id="trait-list"></div>
+          </section>
+          <section class="panel wide-panel">
+            <div class="panel-title"><span>03</span><h3>你的旅行说明书</h3></div>
+            <div class="manual-grid" id="manual-grid"></div>
+          </section>
+          <section class="panel ranking-panel">
+            <div class="panel-title"><span>04</span><h3>人格光谱</h3></div>
+            <div id="ranking-list"></div>
+          </section>
+          <section class="panel quote-panel">
+            <div class="quote-mark">“</div>
+            <blockquote id="result-quote"></blockquote>
+            <p>— 给旅途中的你</p>
+          </section>
+        </div>
+
+        <div class="save-status" id="save-status"></div>
+        <div class="result-actions">
+          <button class="primary-button" data-action="share">复制结果文案</button>
+          <button class="outline-button" data-action="restart">再测一次</button>
+          <button class="text-button" data-action="open-feedback">结果不像我？告诉我们</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 花路人格局 · 独立创作的娱乐测试</p>
+    <p>节目及人物名称归其权利方所有。本网站与节目制作方、嘉宾及视频作者无关联。</p>
+  </footer>
+
+  <dialog id="about-dialog">
+    <button class="dialog-close" data-action="close-dialog" aria-label="关闭">×</button>
+    <span class="eyebrow"><span></span> 关于这份测试</span>
+    <h2>它测的不是“你最喜欢谁”</h2>
+    <p>测试从旅行综艺里反复出现的六类关系变量出发：主动性、情绪表达、边界意识、团队投入、冲突直面与压力稳定。题目全部为重新设计的生活化情境，不复刻节目台词。</p>
+    <p>结果是人物在节目叙事中的一种“人格原型”，不是对真人的医学或道德判断，也不能替代专业心理测评。</p>
+  </dialog>
+
+  <dialog id="feedback-dialog">
+    <button class="dialog-close" data-action="close-dialog" aria-label="关闭">×</button>
+    <span class="eyebrow"><span></span> 旅行意见箱</span>
+    <h2>哪一部分让你有话想说？</h2>
+    <form id="feedback-form">
+      <label>反馈类型
+        <select name="category" required>
+          <option value="result">结果不准确</option>
+          <option value="question">题目或选项</option>
+          <option value="bug">页面问题</option>
+          <option value="idea">新想法</option>
+          <option value="other">其他</option>
+        </select>
+      </label>
+      <label>你的反馈
+        <textarea name="message" rows="5" maxlength="1000" placeholder="请尽量具体一些……" required></textarea>
+      </label>
+      <label>联系方式（选填）
+        <input name="contact" maxlength="120" placeholder="邮箱 / 社交账号">
+      </label>
+      <button class="primary-button full" type="submit">提交反馈</button>
+      <p class="form-status" id="feedback-status"></p>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
