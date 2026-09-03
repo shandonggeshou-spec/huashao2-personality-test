@@ -54,9 +54,9 @@ nav { display: flex; align-items: center; gap: 18px; }
 .lineup-head-5::before { background-position: 66.666% center; }
 .lineup-head-6::before { background-position: 83.333% center; }
 .lineup-head-7::before { background-position: 100% center; }
-h1 { margin: 0 0 38px; font-family: "Songti SC", STSong, "Noto Serif CJK SC", serif; font-weight: 900; font-size: clamp(62px, 8.2vw, 102px); line-height: 1.09; letter-spacing: -.065em; text-shadow: .012em .01em 0 currentColor; }
+h1 { margin: 0 0 38px; font-family: "Songti SC", STSong, "Noto Serif CJK SC", serif; font-weight: 900; font-size: clamp(62px, 8.2vw, 102px); line-height: 1.5; letter-spacing: -.065em; text-shadow: .012em .01em 0 currentColor; }
 h1 > span { white-space: nowrap; }
-h1 em { display: inline-block; margin-top: .14em; color: var(--orange); font-style: normal; white-space: nowrap; position: relative; }
+h1 em { color: var(--orange); font-style: normal; white-space: nowrap; position: relative; }
 h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 10px; background: url("data:image/svg+xml,%3Csvg width='300' height='10' viewBox='0 0 300 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 8C68 1 214 1 298 5' fill='none' stroke='%23ed5b3d' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat; }
 .hero-note { max-width: 900px; margin: 0; padding: 0; list-style: none; font-family: "Songti SC", STSong, serif; font-weight: 600; font-size: clamp(17px, 2vw, 21px); line-height: 1.82; color: #514841; }
 .hero-note li + li { margin-top: 8px; }
@@ -201,8 +201,8 @@ textarea { resize: vertical; }
   .traveler-lineup { height: 105px; }
   .lineup-head { height: 86px; }
   .lineup-head::before { width: 42px; height: 86px; }
-  h1 { margin: 3px 0 22px; font-size: clamp(34px, 9.7vw, 41px); line-height: 1.16; letter-spacing: -.05em; }
-  h1 em { margin-top: .18em; }
+  h1 { margin: 3px 0 22px; font-size: clamp(34px, 9.7vw, 41px); line-height: 1.5; letter-spacing: -.05em; }
+  .hero-note { width: min(73%, 270px); }
   .hero-points { font-size: 14px; line-height: 1.58; }
   .hero-points li { padding-left: 14px; }
   .hero-actions { margin-top: 24px; gap: 13px; }
@@ -241,7 +241,7 @@ textarea { resize: vertical; }
   .traveler-lineup { height: 108px; }
   .lineup-head { height: 98px; }
   .lineup-head::before { width: 48px; height: 98px; }
-  h1 { margin-bottom: 27px; font-size: clamp(37px, 10.5vw, 44px); line-height: 1.16; }
+  h1 { margin-bottom: 27px; font-size: clamp(37px, 10.5vw, 44px); line-height: 1.5; }
   .hero-note { font-size: 15px; line-height: 1.78; }
   .hero-actions { margin-top: 24px; }
   .hero-actions .primary-button { min-height: 66px; }
@@ -257,7 +257,7 @@ textarea { resize: vertical; }
   .traveler-lineup { height: 80px; }
   .lineup-head { height: 76px; }
   .lineup-head::before { width: 37px; height: 76px; }
-  h1 { margin: 0 0 18px; font-size: clamp(33px, 10.8vw, 39px); line-height: 1.15; }
+  h1 { margin: 0 0 18px; font-size: clamp(33px, 10.8vw, 39px); line-height: 1.5; }
   .hero-note { font-size: 12px; line-height: 1.64; }
   .duration-meta { font-size: 10px; }
   .hero-actions { margin-top: 10px; gap: 9px; }
