@@ -1,6 +1,6 @@
 # 花路人格局
 
-一款“你是《花儿与少年》第二季中的哪种旅行人格”娱乐测试。24 道原创旅行情境题，输出主/副人格、六维关系雷达、人格光谱与相处建议。
+一款“你是《花儿与少年》第二季中的哪种旅行人格”娱乐测试。题库包含 72 道原创旅行情境题，每次按主题平衡抽取 24 道并随机排列题目与选项，输出主/副人格、六维关系雷达、人格光谱与相处建议。
 
 ## 本地预览
 
@@ -25,7 +25,11 @@ window.APP_CONFIG = {
 };
 ```
 
-前端公开 anon key 是 Supabase 的正常用法。`supabase.sql` 已启用 RLS：访客只能新增记录，不能读取、修改或删除数据。站长在 Supabase 的 **Table Editor** 查看全部 `test_results` 和 `feedback`，也可导出 CSV。
+前端公开 anon key 是 Supabase 的正常用法。`supabase.sql` 已启用 RLS：访客只能新增记录，不能读取、修改或删除数据。测试网站不包含管理入口或管理员登录页；站长使用独立的 Supabase Dashboard 查看 `test_result_overview` 和 `feedback_overview`。
+
+`supabase.sql` 末尾附有 12 个月数据保留期的清理语句。正式运营时由站长定期执行，或在 Supabase 中配置定时任务。
+
+详细配置、权限验收和站长查看方式见 `SUPABASE_SETUP.md`。
 
 ## 部署到 GitHub Pages
 
@@ -49,14 +53,20 @@ git push -u origin main
 
 - `index.html`：页面结构与文案
 - `styles.css`：响应式视觉设计
-- `app.js`：24 道题、七种人格、计分与数据提交
+- `app.js`：随机抽题、七种人格、计分与数据提交
+- `questions-extra.js`：新增的 48 道题，与基础题组成 72 题库
 - `config.js`：Supabase 配置
 - `supabase.sql`：数据库表和安全策略
 - `CONTENT_NOTES.md`：视频内容结构化梳理与测试转译方法
+- `METHODOLOGY.md`：量表计分、配平方法与已知限制
+- `PRIVACY.md`：匿名结果和反馈的数据说明
+- `SUPABASE_SETUP.md`：正式数据库配置和验收说明
 
 ## 内容与隐私
 
 - 本测试为独立创作的娱乐内容，不是专业心理量表。
 - 题目为原创情境，不复制视频逐字稿或节目台词。
-- 默认不收集姓名、手机号等身份字段；联系方式仅在用户主动提交反馈时选填。
-- 若正式公开推广，建议在仓库增加独立隐私说明，并在 Supabase 配置数据保留周期。
+- 不要求姓名、手机号、社交账号等身份字段；意见箱不提供联系方式输入项。
+- 不主动采集或保存 IP、城市、精确位置、浏览器指纹等信息。
+- 后台数据只在独立的 Supabase Dashboard 中查看，不在测试网站公开任何管理入口。
+- 正式运营按 `PRIVACY.md` 和数据库注释执行 12 个月数据保留与删除流程。

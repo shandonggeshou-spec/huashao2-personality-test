@@ -1,4 +1,7 @@
 const CONFIG = window.APP_CONFIG || {};
+const ASSESSMENT_VERSION = "3.0.0";
+const QUESTIONS_PER_TEST = 24;
+const QUESTIONS_PER_CHAPTER = 4;
 
 const DIMENSIONS = [
   ["initiative", "主动掌控"],
@@ -30,15 +33,15 @@ const PROFILES = {
     traits: [["风险雷达常开", "别人还在享受当下，你已经看见预算、时间和执行中的漏洞。"], ["责任感与不安共生", "你会努力掌控局面，因为失控很容易被你理解成“我没做好”。"], ["隐藏成本", "没有说出口的焦虑会变成急促、反复或突然撤退，让协作更加困难。"]],
     manual: [["团队位置", "预警员 / 执行者"], ["冲突反应", "先自责，再急于补救"], ["最在意", "不拖累别人、把事做好"], ["关系优势", "对细节和风险敏锐"], ["关系盲区", "把求助误认为失职"], ["成长提醒", "提前分工不是示弱，是管理"]],
     quote: "责任感不是一个人把所有路走完，而是让每个人都知道自己该走哪一段。" },
-  mao: { name: "毛阿敏", archetype: "松弛的现实主义者", symbol: "🌳", color: "#54745f",
-    summary: "你见过足够多的起伏，不太愿意为一时的情绪消耗整段旅程。你偏爱具体、舒服、能落地的选择，也擅长用幽默和生活感把过热的气氛拉回地面。",
-    traits: [["现实感很强", "你关注吃住、体力和当下体验，认为人舒服了才有余力谈理想。"], ["不轻易卷入", "你看得见暗流，却更愿意保留判断，不让自己成为每场冲突的燃料。"], ["隐藏成本", "过度用轻松化解严肃议题，可能让真正需要回应的人感到被略过。"]],
-    manual: [["团队位置", "气氛缓冲垫"], ["冲突反应", "降级处理，回到生活"], ["最在意", "舒服、实用与不折腾"], ["关系优势", "松弛、包容、有幽默感"], ["关系盲区", "对高敏感需求回应不足"], ["成长提醒", "有时认真谈一次，反而更省心"]],
-    quote: "松弛不是事不关己，而是懂得把精力留给真正重要的事情。" },
-  chen: { name: "陈意涵", archetype: "能量型体验家", symbol: "☀", color: "#e8a638",
-    summary: "你习惯用行动和好奇心穿过不确定：先出发、先尝试、先让气氛活起来。你很会自我供能，不愿把旅行困在反复的关系推演里。",
-    traits: [["行动制造能量", "运动、探索和新鲜体验会迅速帮你从低气压中恢复。"], ["轻盈但不等于浅", "你更愿意用“接下来做什么”回应困境，而不是长时间停在原因里。"], ["隐藏成本", "太快翻篇时，可能错过别人尚未被看见的情绪，也低估自己的疲惫。"]],
-    manual: [["团队位置", "活力发动机"], ["冲突反应", "换场景，用行动重启"], ["最在意", "体验、自由与生命力"], ["关系优势", "乐观、自洽、恢复快"], ["关系盲区", "不擅长停留在沉重情绪里"], ["成长提醒", "慢下来听完，也是一种行动"]],
+  mao: { name: "毛阿敏", archetype: "体面的现实管理者", symbol: "🌳", color: "#54745f",
+    summary: "你擅长把旅行拉回能运转的现实：吃住、体力、规则和实际麻烦都在你的雷达里。你愿意承担，也在意场面体面；面对高风险冲突时，常先选择缓冲与管理。",
+    traits: [["现实管理力", "你会关注吃住、体力、守时和执行漏洞，擅长让生活重新可持续。"], ["体面与分寸", "你能捕捉别人的情绪，也更习惯用成熟、委婉的方式表达关心。"], ["隐藏成本", "太在意风险和体面时，真正的需求可能只被暗示，重要决定也容易被推迟。"]],
+    manual: [["团队位置", "现实管理者 / 长姐"], ["冲突反应", "先控风险，再处理情绪"], ["最在意", "体面、实用与可持续"], ["关系优势", "会照料现实，也能察觉情绪"], ["关系盲区", "希望别人主动领会暗示"], ["成长提醒", "把真实需求直说，比分寸周全更省力"]],
+    quote: "真正的体面，不是把所有波澜藏住，而是让需要被看见，也让事情能继续。" },
+  chen: { name: "陈意涵", archetype: "有边界的行动派", symbol: "☀", color: "#e8a638",
+    summary: "你习惯用行动和好奇心穿过不确定，也能在亲密与独立之间保留选择权。你享受共同完成一件事的快乐，但不会为了站队放弃自己的节奏。",
+    traits: [["行动制造能量", "运动、探索和主动尝试会迅速帮你从低气压中恢复。"], ["亲密而不粘连", "你能享受团队协作，也能清楚知道什么是自己的选择、什么是别人的课题。"], ["隐藏成本", "太快用行动翻篇时，可能压下自己的不舒服，也错过别人尚未说完的情绪。"]],
+    manual: [["团队位置", "行动者 / 能量发动机"], ["冲突反应", "先找下一步可做的事"], ["最在意", "体验、自由与清晰边界"], ["关系优势", "主动、自洽、恢复快"], ["关系盲区", "不舒服容易被行动盖过去"], ["成长提醒", "慢下来听完，也是在保护边界"]],
     quote: "向前跑是你的天赋；偶尔停下来，也不会失去自由。" },
   yang: { name: "杨洋", archetype: "克制的秩序守望者", symbol: "🧭", color: "#4a6388",
     summary: "你重视规则、承诺和清楚的安排，不愿用情绪给别人增加负担。被忽略时你可能先独自消化，而不是立刻争取；但你的安静不代表没有立场。",
@@ -49,7 +52,17 @@ const PROFILES = {
 
 const Q = (chapter, scene, text, options) => ({ chapter, scene, text, options });
 const O = (text, people, dims) => ({ text, people, dims });
-const QUESTIONS = [
+function readLocalList(key) {
+  if (typeof localStorage === "undefined") return [];
+  try { const value = JSON.parse(localStorage.getItem(key) || "[]"); return Array.isArray(value) ? value : []; }
+  catch (_) { return []; }
+}
+function writeLocalList(key, value) {
+  if (typeof localStorage === "undefined") return false;
+  try { localStorage.setItem(key, JSON.stringify(value)); return true; }
+  catch (_) { return false; }
+}
+const BASE_QUESTIONS = [
   Q("出发之前", "群聊突然安静", "七个人明早出发，但住宿和接机还没人确认。你会？", [
     O("马上拉一张清单，逐项确认负责人和截止时间", ["zheng","yang"], {initiative:2, stability:1, devotion:2}),
     O("先问大家想住得舒服还是省预算，再做方案", ["jing","mao"], {initiative:1, boundary:1, devotion:2}),
@@ -177,6 +190,62 @@ const QUESTIONS = [
     O("不必改变太多，带着好奇心继续体验", ["chen","mao"], {initiative:1, stability:2})])
 ];
 
+const QUESTION_BANK = [...BASE_QUESTIONS, ...(window.EXTRA_QUESTIONS || [])].map((question, index) => ({
+  ...question, id: `q${String(index + 1).padStart(3, "0")}`
+}));
+let QUESTIONS = [];
+
+function shuffle(items) {
+  const copy = [...items];
+  for (let index = copy.length - 1; index > 0; index -= 1) {
+    const randomValue = window.crypto?.getRandomValues ? (() => { const values = new Uint32Array(1); window.crypto.getRandomValues(values); return values[0] / 0x100000000; })() : Math.random();
+    const target = Math.floor(randomValue * (index + 1));
+    [copy[index], copy[target]] = [copy[target], copy[index]];
+  }
+  return copy;
+}
+
+function buildQuestionSet() {
+  const chapters = shuffle([...new Set(QUESTION_BANK.map(question => question.chapter))]);
+  let selected = [];
+  chapters.forEach(chapter => {
+    selected.push(...shuffle(QUESTION_BANK.filter(question => question.chapter === chapter)).slice(0, QUESTIONS_PER_CHAPTER));
+  });
+  selected = selected.map(question => ({ ...question, options: shuffle(question.options) }));
+  const signature = selected.map(question => question.id).sort();
+  const previous = readLocalList("hl-last-question-set");
+  if (previous.length === signature.length && signature.every((id, index) => id === previous[index])) return buildQuestionSet();
+  writeLocalList("hl-last-question-set", signature);
+  return selected;
+}
+
+function calculateBaselines(questions) {
+  const profiles = Object.fromEntries(Object.keys(PROFILES).map(id => {
+    let mean = 0, variance = 0;
+    questions.forEach(question => {
+      const possible = question.options.map(option => {
+        const rank = option.people.indexOf(id);
+        return rank < 0 ? 0 : (rank === 0 ? 3 : 2);
+      });
+      const questionMean = possible.reduce((sum, value) => sum + value, 0) / possible.length;
+      mean += questionMean;
+      variance += possible.reduce((sum, value) => sum + ((value - questionMean) ** 2), 0) / possible.length;
+    });
+    return [id, { mean, variance: Math.max(variance, .0001) }];
+  }));
+  const dimensions = Object.fromEntries(DIMENSIONS.map(([id]) => {
+    let mean = 0, variance = 0;
+    questions.forEach(question => {
+      const possible = question.options.map(option => option.dims[id] || 0);
+      const questionMean = possible.reduce((sum, value) => sum + value, 0) / possible.length;
+      mean += questionMean;
+      variance += possible.reduce((sum, value) => sum + ((value - questionMean) ** 2), 0) / possible.length;
+    });
+    return [id, { mean, variance: Math.max(variance, .0001) }];
+  }));
+  return { profiles, dimensions };
+}
+
 let current = 0;
 let answers = [];
 let lastResult = null;
@@ -190,6 +259,7 @@ function showScreen(id) {
 }
 
 function startQuiz() {
+  QUESTIONS = buildQuestionSet();
   current = 0; answers = []; startedAt = Date.now();
   showScreen("quiz-screen"); renderQuestion();
 }
@@ -225,6 +295,7 @@ function chooseOption(event) {
 function previous() { if (current > 0) { current -= 1; renderQuestion(); } }
 
 function calculate() {
+  const baselines = calculateBaselines(QUESTIONS);
   const people = Object.fromEntries(Object.keys(PROFILES).map(id => [id, 0]));
   const dims = Object.fromEntries(DIMENSIONS.map(([id]) => [id, 0]));
   answers.forEach((answerIndex, qIndex) => {
@@ -232,27 +303,32 @@ function calculate() {
     option.people.forEach((id, rank) => { people[id] += rank === 0 ? 3 : 2; });
     Object.entries(option.dims).forEach(([key, value]) => { dims[key] += value; });
   });
-  const ranking = Object.entries(people).sort((a, b) => b[1] - a[1]);
-  const values = Object.values(dims);
-  const min = Math.min(...values), max = Math.max(...values);
-  const normalizedDims = Object.fromEntries(Object.entries(dims).map(([key, value]) => [key, Math.round(34 + ((value - min) / Math.max(1, max - min)) * 60)]));
-  const top = ranking[0][1], possible = QUESTIONS.length * 3;
+  const calibrated = Object.fromEntries(Object.entries(people).map(([id, score]) => [id, (score - baselines.profiles[id].mean) / Math.sqrt(baselines.profiles[id].variance)]));
+  const ranking = Object.entries(calibrated).sort((a, b) => b[1] - a[1]);
+  const calibratedDims = Object.fromEntries(Object.entries(dims).map(([id, score]) => [id, (score - baselines.dimensions[id].mean) / Math.sqrt(baselines.dimensions[id].variance)]));
+  const normalizedDims = Object.fromEntries(Object.entries(calibratedDims).map(([id, z]) => [id, Math.max(10, Math.min(90, Math.round(50 + 15 * z)))]));
+  const gap = ranking[0][1] - ranking[1][1];
   return {
-    primary: ranking[0][0], secondary: ranking[1][0], ranking, dimensions: normalizedDims,
-    match: Math.min(97, Math.round(68 + (top / possible) * 29)),
+    primary: ranking[0][0], secondary: ranking[1][0], ranking, rawScores: people,
+    rawDimensions: dims, calibratedDimensions: calibratedDims, dimensions: normalizedDims,
+    match: Math.min(96, Math.round(76 + Math.max(0, Math.min(1, gap / 1.8)) * 20)),
+    assessmentVersion: ASSESSMENT_VERSION,
     id: `HL-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`
   };
 }
 
 async function finishQuiz() {
   lastResult = calculate();
-  renderResult(lastResult); showScreen("result-screen");
+  // Make the result panel measurable before sizing its canvas.
+  showScreen("result-screen"); renderResult(lastResult);
   await persistResult(lastResult);
 }
 
 function renderResult(result) {
   const profile = PROFILES[result.primary];
-  const maxRank = Math.max(...result.ranking.map(([,score]) => score));
+  const spectrum = result.ranking.map(([id, z]) => [id, Math.max(5, Math.min(99, Math.round(50 + 18 * z)))]);
+  const minRank = Math.min(...spectrum.map(([,score]) => score));
+  const maxRank = Math.max(...spectrum.map(([,score]) => score));
   $("#result-id").textContent = `REPORT NO. ${result.id}`;
   $("#result-symbol").textContent = profile.symbol;
   $("#result-name").textContent = profile.name;
@@ -262,9 +338,9 @@ function renderResult(result) {
   $("#result-hero").style.background = profile.color;
   $("#trait-list").innerHTML = profile.traits.map(([title, text]) => `<div class="trait"><h4>${title}</h4><p>${text}</p></div>`).join("");
   $("#manual-grid").innerHTML = profile.manual.map(([title, text]) => `<div class="manual-item"><small>${title}</small><p>${text}</p></div>`).join("");
-  $("#ranking-list").innerHTML = result.ranking.map(([id, score]) => `<div class="rank-row"><span>${PROFILES[id].name}</span><div class="rank-track"><i style="width:${Math.round(score / maxRank * 100)}%;background:${PROFILES[id].color}"></i></div><strong>${score}</strong></div>`).join("");
+  $("#ranking-list").innerHTML = spectrum.map(([id, score]) => `<div class="rank-row"><span>${PROFILES[id].name}</span><div class="rank-track"><i style="width:${Math.round(28 + ((score - minRank) / Math.max(1, maxRank - minRank)) * 72)}%;background:${PROFILES[id].color}"></i></div><strong>${score}</strong></div>`).join("");
   $("#result-quote").textContent = profile.quote;
-  requestAnimationFrame(() => drawRadar(result.dimensions, profile.color));
+  drawRadar(result.dimensions, profile.color);
 }
 
 function drawRadar(values, color) {
@@ -292,22 +368,23 @@ function polygon(ctx, pts, fill) {
 
 function cloudEnabled() { return Boolean(CONFIG.supabaseUrl && CONFIG.supabaseAnonKey); }
 function headers() { return { "apikey": CONFIG.supabaseAnonKey, "Authorization": `Bearer ${CONFIG.supabaseAnonKey}`, "Content-Type": "application/json", "Prefer": "return=minimal" }; }
-
 async function persistResult(result) {
-  const payload = { public_id: result.id, primary_type: result.primary, secondary_type: result.secondary, scores: Object.fromEntries(result.ranking), dimensions: result.dimensions, answers, duration_seconds: Math.round((Date.now() - startedAt) / 1000) };
-  const local = JSON.parse(localStorage.getItem("hl-results") || "[]"); local.push({ ...payload, created_at: new Date().toISOString() }); localStorage.setItem("hl-results", JSON.stringify(local.slice(-30)));
-  if (!cloudEnabled()) { $("#save-status").textContent = "✓ 结果已保存在此浏览器 · 配置 Supabase 后可汇总所有访客数据"; return; }
+  const answerRecords = QUESTIONS.map((question, index) => ({ question_id: question.id, option_text: question.options[answers[index]].text }));
+  const payload = { public_id: result.id, assessment_version: result.assessmentVersion, primary_type: result.primary, secondary_type: result.secondary, scores: result.rawScores, calibrated_scores: Object.fromEntries(result.ranking), dimensions: result.dimensions, dimension_raw_scores: result.rawDimensions, dimension_calibrated_scores: result.calibratedDimensions, question_ids: QUESTIONS.map(question => question.id), answers, answer_records: answerRecords, duration_seconds: Math.round((Date.now() - startedAt) / 1000) };
+  const local = readLocalList("hl-results"); local.push({ ...payload, created_at: new Date().toISOString() });
+  const localSaved = writeLocalList("hl-results", local.slice(-30));
+  if (!cloudEnabled()) { $("#save-status").textContent = "测试结果仅供娱乐和自我观察，请勿用于严肃评价或决策。"; return; }
   try {
     const response = await fetch(`${CONFIG.supabaseUrl}/rest/v1/test_results`, { method: "POST", headers: headers(), body: JSON.stringify(payload) });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    $("#save-status").textContent = "✓ 匿名结果已安全保存";
-  } catch (error) { $("#save-status").textContent = "云端暂时未响应，结果已保存在此浏览器"; }
+    $("#save-status").textContent = "测试结果仅供娱乐和自我观察，请勿用于严肃评价或决策。";
+  } catch (error) { $("#save-status").textContent = "测试结果仅供娱乐和自我观察，请勿用于严肃评价或决策。"; }
 }
 
 async function submitFeedback(event) {
   event.preventDefault();
   const form = event.currentTarget; const data = new FormData(form);
-  const payload = { category: data.get("category"), message: data.get("message"), contact: data.get("contact") || null, result_public_id: lastResult?.id || null, result_type: lastResult?.primary || null, page_url: location.href.slice(0, 500) };
+  const payload = { category: data.get("category"), message: data.get("message"), result_public_id: lastResult?.id || null, result_type: lastResult?.primary || null, page_url: location.href.slice(0, 500) };
   const status = $("#feedback-status"); status.textContent = "正在投递……";
   if (cloudEnabled()) {
     try {
@@ -316,8 +393,9 @@ async function submitFeedback(event) {
       status.textContent = "收到啦，谢谢你认真告诉我们。"; form.reset(); return;
     } catch (_) { status.textContent = "暂时没投递成功，请稍后重试。"; return; }
   }
-  const feedback = JSON.parse(localStorage.getItem("hl-feedback") || "[]"); feedback.push({ ...payload, created_at: new Date().toISOString() }); localStorage.setItem("hl-feedback", JSON.stringify(feedback));
-  status.textContent = "反馈已保存在此浏览器（站长尚未配置云端）。"; form.reset();
+  const feedback = readLocalList("hl-feedback"); feedback.push({ ...payload, created_at: new Date().toISOString() });
+  writeLocalList("hl-feedback", feedback.slice(-30));
+  status.textContent = "暂时没投递成功，请稍后重试。"; form.reset();
 }
 
 async function shareResult() {
@@ -334,7 +412,7 @@ function closeDialogs() { $$('dialog[open]').forEach(dialog => dialog.close()); 
 document.addEventListener("click", event => {
   const action = event.target.closest("[data-action]")?.dataset.action;
   if (!action) return;
-  ({ start: startQuiz, previous, restart: startQuiz, share: shareResult, "open-about": () => openDialog("#about-dialog"), "open-feedback": () => openDialog("#feedback-dialog"), "close-dialog": closeDialogs })[action]?.();
+  ({ start: startQuiz, previous, restart: startQuiz, share: shareResult, "open-about": () => openDialog("#about-dialog"), "open-privacy": () => openDialog("#privacy-dialog"), "open-feedback": () => openDialog("#feedback-dialog"), "close-dialog": closeDialogs })[action]?.();
 });
 $("#feedback-form").addEventListener("submit", submitFeedback);
 $$('dialog').forEach(dialog => dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); }));
