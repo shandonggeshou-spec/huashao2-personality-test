@@ -39,18 +39,27 @@ nav { display: flex; align-items: center; gap: 18px; }
 .hero-copy { width: 100%; position: relative; z-index: 2; }
 .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: .18em; color: var(--orange-dark); text-transform: uppercase; }
 .eyebrow > span { width: 36px; height: 2px; background: currentColor; }
-.traveler-ticket { position: relative; margin: 24px 0 48px; min-height: 164px; padding: 20px 24px 18px 108px; border: 2px solid var(--ink); border-radius: 25px; box-shadow: 8px 10px 0 var(--ink); background: rgba(247, 241, 231, .18); }
+.traveler-ticket { position: relative; width: 90%; margin: 24px auto 50px; min-height: 156px; padding: 16px 20px 14px 102px; border: 2px solid var(--ink); border-radius: 25px; box-shadow: 8px 10px 0 var(--ink); background: rgba(247, 241, 231, .18); }
 .traveler-ticket::before, .traveler-ticket::after { content: ""; position: absolute; left: -12px; width: 22px; height: 22px; border: 2px solid var(--ink); border-left: 0; border-radius: 0 50% 50% 0; background: var(--paper); }
 .traveler-ticket::before { top: 30%; }
 .traveler-ticket::after { bottom: 30%; }
 .ticket-stub { position: absolute; inset: 0 auto 0 0; width: 82px; display: grid; place-items: center; align-content: center; border-right: 1px dashed rgba(33, 29, 27, .65); color: var(--orange); font-family: "ZCOOL XiaoWei", serif; font-size: 25px; line-height: 1.05; letter-spacing: .08em; }
-.traveler-lineup { display: block; width: 100%; height: 124px; object-fit: contain; }
-h1 { margin: 0 0 34px; font-family: "Songti SC", STSong, "Noto Serif CJK SC", serif; font-weight: 900; font-size: clamp(62px, 8.2vw, 102px); line-height: 1.02; letter-spacing: -.065em; text-shadow: .012em .01em 0 currentColor; }
+.traveler-lineup { display: flex; align-items: center; justify-content: space-between; height: 124px; }
+.lineup-head { display: block; position: relative; flex: 1 1 0; min-width: 0; height: 124px; }
+.lineup-head::before { content: ""; position: absolute; left: 50%; top: 50%; width: 65px; height: 124px; transform: translate(-50%, -50%); background-image: url("assets/traveler-lineup-ink.png"); background-repeat: no-repeat; background-size: 700% 100%; }
+.lineup-head-1::before { background-position: 0 center; }
+.lineup-head-2::before { background-position: 16.666% center; }
+.lineup-head-3::before { background-position: 33.333% center; }
+.lineup-head-4::before { background-position: 50% center; }
+.lineup-head-5::before { background-position: 66.666% center; }
+.lineup-head-6::before { background-position: 83.333% center; }
+.lineup-head-7::before { background-position: 100% center; }
+h1 { margin: 0 0 38px; font-family: "Songti SC", STSong, "Noto Serif CJK SC", serif; font-weight: 900; font-size: clamp(62px, 8.2vw, 102px); line-height: 1.09; letter-spacing: -.065em; text-shadow: .012em .01em 0 currentColor; }
 h1 > span { white-space: nowrap; }
 h1 em { color: var(--orange); font-style: normal; white-space: nowrap; position: relative; }
 h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 10px; background: url("data:image/svg+xml,%3Csvg width='300' height='10' viewBox='0 0 300 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 8C68 1 214 1 298 5' fill='none' stroke='%23ed5b3d' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat; }
-.hero-note { max-width: 900px; margin: 0; padding: 0; list-style: none; font-family: "Songti SC", STSong, serif; font-weight: 600; font-size: clamp(17px, 2vw, 21px); line-height: 1.68; color: #514841; }
-.hero-note li + li { margin-top: 5px; }
+.hero-note { max-width: 900px; margin: 0; padding: 0; list-style: none; font-family: "Songti SC", STSong, serif; font-weight: 600; font-size: clamp(17px, 2vw, 21px); line-height: 1.82; color: #514841; }
+.hero-note li + li { margin-top: 8px; }
 .hero-note li { position: relative; padding-left: 1em; }
 .hero-note li::before { content: "•"; position: absolute; left: 0; color: var(--orange); }
 .duration-meta { flex: none; color: #8b827b; font-size: 12px; white-space: nowrap; }
@@ -174,10 +183,12 @@ textarea { resize: vertical; }
 }
 @media (min-width: 901px) {
   .hero-screen { padding-top: 42px; padding-bottom: 42px; }
-  .traveler-ticket { min-height: 142px; margin-block: 18px 35px; padding: 13px 22px 11px 102px; }
-  .traveler-lineup { height: 116px; }
-  h1 { font-size: clamp(60px, 5.8vw, 84px); margin-bottom: 24px; }
-  .hero-note { font-size: 18px; line-height: 1.55; }
+  .traveler-ticket { width: 88%; min-height: 136px; margin-block: 18px 40px; padding: 9px 18px 7px 94px; }
+  .traveler-lineup { height: 118px; }
+  .lineup-head { height: 122px; }
+  .lineup-head::before { width: 64px; height: 122px; }
+  h1 { font-size: clamp(60px, 5.8vw, 84px); margin-bottom: 30px; }
+  .hero-note { font-size: 18px; line-height: 1.72; }
   .hero-actions { margin-top: 18px; }
   .hero-actions .primary-button { min-height: 64px; }
 }
@@ -186,9 +197,11 @@ textarea { resize: vertical; }
   .hero-screen { padding: 30px 20px 24px; min-height: calc(100svh - 66px); gap: 16px; overflow: clip; }
   .hero-copy { flex: none; }
   .eyebrow { font-size: 12px; gap: 8px; letter-spacing: .14em; }
-  .traveler-ticket { padding-right: 13px; }
+  .traveler-ticket { width: 94%; padding-right: 8px; }
   .traveler-lineup { height: 105px; }
-  h1 { margin: 3px 0 14px; font-size: clamp(34px, 9.7vw, 41px); line-height: 1.12; letter-spacing: -.05em; }
+  .lineup-head { height: 86px; }
+  .lineup-head::before { width: 42px; height: 86px; }
+  h1 { margin: 3px 0 22px; font-size: clamp(34px, 9.7vw, 41px); line-height: 1.1; letter-spacing: -.05em; }
   .hero-points { font-size: 14px; line-height: 1.58; }
   .hero-points li { padding-left: 14px; }
   .hero-actions { margin-top: 24px; gap: 13px; }
@@ -222,11 +235,13 @@ textarea { resize: vertical; }
   dialog { padding: 35px 22px 26px; }
 }
 @media (max-width: 680px) and (min-height: 761px) {
-  .traveler-ticket { min-height: 142px; margin: 24px 0 38px; padding: 15px 9px 13px 82px; }
-  .ticket-stub { width: 74px; font-size: 24px; }
-  .traveler-lineup { height: 112px; }
-  h1 { margin-bottom: 24px; font-size: clamp(37px, 10.5vw, 44px); line-height: 1.02; }
-  .hero-note { font-size: 15px; line-height: 1.65; }
+  .traveler-ticket { min-height: 126px; margin: 24px auto 40px; padding: 9px 7px 7px 70px; }
+  .ticket-stub { width: 62px; font-size: 22px; }
+  .traveler-lineup { height: 108px; }
+  .lineup-head { height: 98px; }
+  .lineup-head::before { width: 48px; height: 98px; }
+  h1 { margin-bottom: 27px; font-size: clamp(37px, 10.5vw, 44px); line-height: 1.08; }
+  .hero-note { font-size: 15px; line-height: 1.78; }
   .hero-actions { margin-top: 24px; }
   .hero-actions .primary-button { min-height: 66px; }
 }
@@ -235,12 +250,14 @@ textarea { resize: vertical; }
   .brand-mark { width: 32px; height: 32px; font-size: 19px; }
   .hero-screen { min-height: calc(100svh - 58px); padding-block: 14px 10px; gap: 0; }
   .hero-screen .eyebrow { font-size: 10px; }
-  .traveler-ticket { min-height: 100px; margin: 13px 0 22px; padding: 9px 7px 8px 61px; border-radius: 16px; box-shadow: 5px 6px 0 var(--ink); }
+  .traveler-ticket { width: 94%; min-height: 91px; margin: 13px auto 24px; padding: 5px 4px 4px 51px; border-radius: 16px; box-shadow: 5px 6px 0 var(--ink); }
   .traveler-ticket::before, .traveler-ticket::after { left: -9px; width: 16px; height: 16px; }
-  .ticket-stub { width: 52px; font-size: 18px; }
-  .traveler-lineup { height: 82px; }
-  h1 { margin: 0 0 16px; font-size: clamp(33px, 10.8vw, 39px); line-height: 1.02; }
-  .hero-note { font-size: 12px; line-height: 1.48; }
+  .ticket-stub { width: 44px; font-size: 17px; }
+  .traveler-lineup { height: 80px; }
+  .lineup-head { height: 76px; }
+  .lineup-head::before { width: 37px; height: 76px; }
+  h1 { margin: 0 0 18px; font-size: clamp(33px, 10.8vw, 39px); line-height: 1.08; }
+  .hero-note { font-size: 12px; line-height: 1.64; }
   .duration-meta { font-size: 10px; }
   .hero-actions { margin-top: 10px; gap: 9px; }
   .hero-actions .primary-button { min-height: 48px; padding-block: 8px; border-radius: 13px; font-size: 21px; box-shadow: 4px 5px 0 var(--ink); }
