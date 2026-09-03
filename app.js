@@ -13,37 +13,37 @@ const DIMENSIONS = [
 ];
 
 const PROFILES = {
-  jing: { name: "井柏然", archetype: "人形行程稳定器", symbol: "⚓", color: "#326f89",
+  jing: { name: "井柏然", archetype: "人形行程稳定器", avatar: 1, color: "#326f89",
     summary: "你不是没脾气，你只是习惯先把烂摊子收好，再决定该对谁翻白眼。别人负责制造剧情，你负责把剧情从事故现场改回旅行日记。",
     traits: [["全团隐形客服", "路线乱了你查地图，气氛僵了你递台阶，连沉默都被你安排得很体面。"], ["情商长期满格", "你能听懂一句话里的三层意思，却常假装只听懂第一层，主打一个看破不说破。"], ["稳定器也会没电", "大家太习惯你靠谱，容易把你的崩溃也当成待办事项交给你处理。"]],
     manual: [["团内职位", "总协调兼人类翻译器"], ["开撕模式", "先灭火，再查谁带的打火机"], ["核心需求", "公平、效率、别太难看"], ["隐藏技能", "把七嘴八舌翻译成人话"], ["系统漏洞", "累到关机还显示在线"], ["使用提醒", "可以帮忙，但别默认我包售后"]],
     quote: "我不是爱操心，我只是见不得事情死得这么随便。" },
-  ning: { name: "宁静", archetype: "人形真话扩音器", symbol: "🔥", color: "#d94931",
+  ning: { name: "宁静", archetype: "人形真话扩音器", avatar: 3, color: "#d94931",
     summary: "你的耐心可以很多，但绝不批发给废话。别人还在组织委婉措辞，你已经把问题、责任人和解决方案一起端上桌了。",
     traits: [["场面话过敏体质", "一句“大家都挺好的”，能让你立刻开始寻找到底是谁不太好。"], ["越乱越有主意", "局面一失控，你反而精神了：终于轮到说人话、办正事。"], ["锋利自带回声", "你本来只想切开问题，偶尔连旁边人的自尊也顺手切片了。"]],
     manual: [["团内职位", "破局者兼真话质检员"], ["开撕模式", "跳过寒暄，直达病灶"], ["核心需求", "真实、担当、别装"], ["隐藏技能", "三秒识破塑料和平"], ["系统漏洞", "结论比语气先抵达"], ["使用提醒", "刀可以快，落点要准"]],
     quote: "我不是脾气大，我只是懒得给荒唐加滤镜。" },
-  xu: { name: "许晴", archetype: "旅行团情绪显微镜", symbol: "☁", color: "#d86e85",
+  xu: { name: "许晴", archetype: "旅行团情绪显微镜", avatar: 4, color: "#d86e85",
     summary: "别人旅行看风景，你旅行还顺便看关系气压图。一个眼神、半句敷衍、座位少留了十厘米，都可能被你的情绪雷达精准捕获。",
     traits: [["空气变化第一知情人", "大家说“没事”，你已经听见空气里那声很大的“有事”。"], ["真心必须原装正品", "热闹可以不要，客套也能省略，你只想确认这份喜欢到底是不是本人签收。"], ["感受容易自动加戏", "当别人回复慢半拍，你的内心编剧可能已经写完关系大结局。"]],
     manual: [["团内职位", "气氛探测器兼真心鉴定师"], ["开撕模式", "先确认你还爱不爱我，再谈事情"], ["核心需求", "真心、偏爱、被看见"], ["隐藏技能", "从语气里提取潜台词"], ["系统漏洞", "把落差翻译成拒绝"], ["使用提醒", "别让别人猜你心里的标准答案"]],
     quote: "我不是难哄，我只是不接受把敷衍包装成成熟。" },
-  zheng: { name: "郑爽", archetype: "二十四小时风险雷达", symbol: "📡", color: "#6e829d",
+  zheng: { name: "郑爽", archetype: "二十四小时风险雷达", avatar: 6, color: "#6e829d",
     summary: "大家还没出发，你已经在脑内经历了超支、迟到、走散和集体失望。你不是悲观，你只是把全团明天要踩的坑，提前在今晚焦虑完了。",
     traits: [["脑内常驻应急指挥部", "别人看到计划，你看到计划里所有可能突然冒烟的地方。"], ["责任心自带加班功能", "没人开口时你会默默接活，接完又怀疑是不是自己哪里做得还不够。"], ["越想负责越容易卡顿", "焦虑一多，表达就容易反复横跳，让别人跟不上你脑内已经演到第八集的剧情。"]],
     manual: [["团内职位", "预警员兼漏洞扫描器"], ["开撕模式", "先怪自己，再试图拯救全团"], ["核心需求", "别失控、别拖累、别出错"], ["隐藏技能", "提前发现明天的麻烦"], ["系统漏洞", "把求助识别成能力不足"], ["使用提醒", "分工不是甩锅，是给脑子放假"]],
     quote: "我不是想太多，我只是把你们明天要踩的坑提前焦虑完了。" },
-  mao: { name: "毛阿敏", archetype: "全团生活总务处", symbol: "🌳", color: "#54745f",
+  mao: { name: "毛阿敏", archetype: "全团生活总务处", avatar: 2, color: "#54745f",
     summary: "别人负责诗和远方，你负责确认远方有没有热水、早饭和按时出发的车。你嘴上说“都行”，心里已经把不靠谱方案逐一判了缓刑。",
     traits: [["现实问题终结者", "谁饿了、谁累了、谁的房卡又丢了，你通常比当事人更早发现。"], ["体面是默认操作系统", "再大的意见也先包一层礼貌，毕竟架可以晚点吵，饭不能凉。"], ["暗示发了但无人签收", "你以为自己已经说得很明显，别人只听见一句温柔的“没关系”。"]],
     manual: [["团内职位", "总务处长兼生活售后"], ["开撕模式", "先把饭吃了，再文明追责"], ["核心需求", "体面、实用、能落地"], ["隐藏技能", "把混乱过成正常日子"], ["系统漏洞", "暗示发出后默认全员已读"], ["使用提醒", "需求直说，省掉全团阅读理解"]],
     quote: "我不是爱管，我只是知道放着不管，最后还是我管。" },
-  chen: { name: "陈意涵", archetype: "人形充电宝兼逃生通道", symbol: "☀", color: "#e8a638",
+  chen: { name: "陈意涵", archetype: "人形充电宝兼逃生通道", avatar: 5, color: "#e8a638",
     summary: "气氛一沉，你的第一反应不是开会，而是先把大家拖出去晒太阳。你相信很多烦恼不是想通的，是走着走着发现懒得再想了。",
     traits: [["行动就是你的氧气", "计划卡住不要紧，先出门；情绪卡住也不要紧，还是先出门。"], ["亲密但拒绝捆绑销售", "可以一起疯、一起扛，但谁的人生课题谁自己签收。"], ["跑太快会漏听台词", "你已经翻篇去看日落了，队友可能还停在上一页等一句回应。"]],
     manual: [["团内职位", "能量发动机兼户外逃生口"], ["开撕模式", "先找能做的，做完再说"], ["核心需求", "体验、自由、别绑架"], ["隐藏技能", "把低气压拽去见太阳"], ["系统漏洞", "用下一站盖住上一站"], ["使用提醒", "偶尔停下听完，不算浪费生命"]],
     quote: "我不是没烦恼，我只是先去玩，回来再决定要不要烦。" },
-  yang: { name: "杨洋", archetype: "沉默版秩序管理员", symbol: "🧭", color: "#4a6388",
+  yang: { name: "杨洋", archetype: "沉默版秩序管理员", avatar: 7, color: "#4a6388",
     summary: "你不抢麦、不抢戏，只想准时出发、按约办事。别人以为你没意见，其实你的内心表格已经把每个人的靠谱程度更新到了最新版本。",
     traits: [["规则是你的旅行护栏", "时间、地点、责任一旦写清楚，你整个人都会肉眼可见地安心。"], ["情绪采用静音模式", "不满先自己消化，实在消化不了再以一句“没事”申请延期处理。"], ["存在感容易延迟到账", "你一直等别人主动发现需求，最后常收到一句：“你怎么不早说？”"]],
     manual: [["团内职位", "纪律委员兼可靠备用机"], ["开撕模式", "先忍住，证据齐了再开口"], ["核心需求", "守约、尊重、说清楚"], ["隐藏技能", "默默把承诺执行到底"], ["系统漏洞", "需求总在过期后弹窗"], ["使用提醒", "早点发坐标，别人不是定位软件"]],
@@ -343,13 +343,17 @@ function renderResult(result) {
   const minRank = Math.min(...spectrum.map(([,score]) => score));
   const maxRank = Math.max(...spectrum.map(([,score]) => score));
   $("#result-id").textContent = `REPORT NO. ${result.id}`;
-  $("#result-symbol").textContent = profile.symbol;
+  const avatar = $("#result-symbol");
+  avatar.textContent = "";
+  avatar.className = `result-symbol result-avatar result-avatar-${profile.avatar}`;
+  avatar.setAttribute("role", "img");
+  avatar.setAttribute("aria-label", `${profile.name}的手绘头像`);
   $("#result-name").textContent = profile.name;
   $("#result-archetype").textContent = profile.archetype;
   $("#result-summary").textContent = `“${profile.quote}”`;
   $("#result-explanation").textContent = profile.summary;
   $("#match-score").textContent = result.match;
-  $("#result-hero").style.background = profile.color;
+  $("#result-hero").style.removeProperty("background");
   $("#trait-list").innerHTML = profile.traits.map(([title, text]) => `<div class="trait"><h4>${title}</h4><p>${text}</p></div>`).join("");
   $("#manual-grid").innerHTML = profile.manual.map(([title, text]) => `<div class="manual-item"><small>${title}</small><p>${text}</p></div>`).join("");
   $("#ranking-list").innerHTML = spectrum.map(([id, score]) => `<div class="rank-row"><span>${PROFILES[id].name}</span><div class="rank-track"><i style="width:${Math.round(28 + ((score - minRank) / Math.max(1, maxRank - minRank)) * 72)}%;background:${PROFILES[id].color}"></i></div><strong>${score}</strong></div>`).join("");

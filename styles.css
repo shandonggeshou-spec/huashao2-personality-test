@@ -135,20 +135,27 @@ h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px;
 .option-letter { display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid currentColor; border-radius: 50%; flex: none; font-family: serif; font-style: italic; }
 .quiz-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; color: #887c73; font-size: 12px; }
 
-.result-screen { padding: 48px 24px 100px; background: #eee5d8; }
+.result-screen { padding: 48px 24px 100px; background: var(--paper); }
 .result-shell { width: min(1120px, 100%); margin: 0 auto; }
 .result-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .result-id { color: #7d7269; font-size: 11px; }
-.result-hero { background: var(--orange); color: #fffaf2; min-height: 320px; display: grid; grid-template-columns: 260px 1fr 120px; align-items: center; gap: 30px; padding: 40px 50px; position: relative; overflow: hidden; box-shadow: var(--shadow); }
-.result-hero::before { content: ""; width: 420px; height: 420px; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; position: absolute; left: -90px; top: -60px; }
-.result-symbol { font-size: 140px; text-align: center; filter: grayscale(1) brightness(3); position: relative; z-index: 1; }
+.result-hero { background: transparent; color: var(--ink); min-height: 320px; display: grid; grid-template-columns: 260px 1fr 120px; align-items: center; gap: 30px; padding: 40px 50px; position: relative; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.result-hero::before { content: none; }
+.result-symbol { position: relative; z-index: 1; width: 190px; height: 240px; margin: 0 auto; background-repeat: no-repeat; background-position: center; background-size: contain; }
+.result-avatar-1 { background-image: url("assets/result-avatar-1.png"); }
+.result-avatar-2 { background-image: url("assets/result-avatar-2.png"); }
+.result-avatar-3 { background-image: url("assets/result-avatar-3.png"); }
+.result-avatar-4 { background-image: url("assets/result-avatar-4.png"); }
+.result-avatar-5 { background-image: url("assets/result-avatar-5.png"); }
+.result-avatar-6 { background-image: url("assets/result-avatar-6.png"); }
+.result-avatar-7 { background-image: url("assets/result-avatar-7.png"); }
 .result-main { position: relative; z-index: 1; }
 .result-main > p:first-child { margin: 0; font-size: 13px; letter-spacing: .14em; opacity: .85; }
 .result-main h2 { margin: 5px 0 0; font-family: "ZCOOL XiaoWei"; font-size: clamp(64px, 8vw, 104px); font-weight: 400; line-height: 1; }
 .result-main h3 { margin: 10px 0 14px; font-size: 20px; letter-spacing: .1em; }
 .result-summary { margin: 0; max-width: 570px; font-family: "ZCOOL XiaoWei", "Songti SC", STSong, serif; font-size: 20px; line-height: 1.65; opacity: .95; }
-.match-seal { width: 105px; height: 105px; display: grid; place-content: center; text-align: center; border: 2px solid #fff; border-radius: 50%; transform: rotate(7deg); position: relative; z-index: 1; }
-.match-seal::after { content: ""; position: absolute; inset: 5px; border: 1px dashed #fff; border-radius: 50%; }
+.match-seal { width: 105px; height: 105px; display: grid; place-content: center; text-align: center; color: var(--orange-dark); border: 2px solid currentColor; border-radius: 50%; transform: rotate(7deg); position: relative; z-index: 1; }
+.match-seal::after { content: ""; position: absolute; inset: 5px; border: 1px dashed currentColor; border-radius: 50%; }
 .match-seal strong { font-family: serif; font-size: 33px; line-height: 1; } .match-seal span { font-size: 9px; letter-spacing: .1em; }
 .result-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 18px; margin-top: 18px; }
 .panel { background: #fffaf2; border: 1px solid var(--line); padding: 30px; }
@@ -192,7 +199,7 @@ textarea { resize: vertical; }
   .hero-screen { flex-direction: column; align-items: stretch; }
   .hero-visual { min-width: 0; width: 100%; height: 500px; }
   .result-hero { grid-template-columns: 150px 1fr; padding: 35px; }
-  .result-symbol { font-size: 100px; } .match-seal { position: absolute; right: 22px; top: 22px; width: 88px; height: 88px; }
+  .result-symbol { width: 164px; height: 210px; } .match-seal { position: absolute; right: 22px; top: 22px; width: 88px; height: 88px; }
 }
 @media (min-width: 901px) {
   .hero-screen { padding-top: 42px; padding-bottom: 42px; }
@@ -241,7 +248,7 @@ textarea { resize: vertical; }
   .quiz-controls { margin-top: 10px; }
   .quiz-controls > span { display: none; }
   .result-screen { padding: 28px 12px 70px; } .result-heading { padding: 0 8px; } .result-id { display: none; }
-  .result-hero { display: block; text-align: center; padding: 30px 20px 38px; } .result-symbol { font-size: 88px; line-height: 1.1; }
+  .result-hero { display: block; text-align: center; padding: 30px 20px 38px; } .result-symbol { width: 142px; height: 180px; margin-bottom: 4px; }
   .result-main h2 { font-size: 72px; } .match-seal { width: 74px; height: 74px; right: 10px; top: 10px; } .match-seal strong { font-size: 24px; }
   .result-grid { grid-template-columns: 1fr; } .wide-panel { grid-column: auto; } .panel { padding: 24px 19px; }
   .manual-grid { grid-template-columns: 1fr; }
