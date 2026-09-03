@@ -250,6 +250,7 @@ let current = 0;
 let answers = [];
 let lastResult = null;
 let startedAt = null;
+let advancing = false;
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
@@ -260,11 +261,12 @@ function showScreen(id) {
 
 function startQuiz() {
   QUESTIONS = buildQuestionSet();
-  current = 0; answers = []; startedAt = Date.now();
+  current = 0; answers = []; startedAt = Date.now(); advancing = false;
   showScreen("quiz-screen"); renderQuestion();
 }
 
 function renderQuestion() {
+  advancing = false;
   const q = QUESTIONS[current];
   const chapters = [...new Set(QUESTIONS.map(item => item.chapter))];
   const chapterIndex = chapters.indexOf(q.chapter) + 1;
@@ -283,9 +285,12 @@ function renderQuestion() {
 }
 
 function chooseOption(event) {
+  if (advancing) return;
+  advancing = true;
   const index = Number(event.currentTarget.dataset.index);
   answers[current] = index;
   $$(".option").forEach((button, i) => button.classList.toggle("selected", i === index));
+  event.currentTarget.blur();
   window.setTimeout(() => {
     if (current < QUESTIONS.length - 1) { current += 1; renderQuestion(); }
     else finishQuiz();
@@ -372,13 +377,12 @@ async function persistResult(result) {
   const answerRecords = QUESTIONS.map((question, index) => ({ question_id: question.id, option_text: question.options[answers[index]].text }));
   const payload = { public_id: result.id, assessment_version: result.assessmentVersion, primary_type: result.primary, secondary_type: result.secondary, scores: result.rawScores, calibrated_scores: Object.fromEntries(result.ranking), dimensions: result.dimensions, dimension_raw_scores: result.rawDimensions, dimension_calibrated_scores: result.calibratedDimensions, question_ids: QUESTIONS.map(question => question.id), answers, answer_records: answerRecords, duration_seconds: Math.round((Date.now() - startedAt) / 1000) };
   const local = readLocalList("hl-results"); local.push({ ...payload, created_at: new Date().toISOString() });
-  const localSaved = writeLocalList("hl-results", local.slice(-30));
-  if (!cloudEnabled()) { $("#save-status").textContent = "测试结果仅供娱乐和自我观察，请勿用于严肃评价或决策。"; return; }
+  writeLocalList("hl-results", local.slice(-30));
+  if (!cloudEnabled()) return;
   try {
     const response = await fetch(`${CONFIG.supabaseUrl}/rest/v1/test_results`, { method: "POST", headers: headers(), body: JSON.stringify(payload) });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    $("#save-status").textContent = "测试结果仅供娱乐和自我观察，请勿用于严肃评价或决策。";
-  } catch (error) { $("#save-status").textContent = "测试结果仅供娱乐和自我观察，请勿用于严肃评价或决策。"; }
+  } catch (error) { /* 测试结果仍可在当前页面正常查看。 */ }
 }
 
 async function submitFeedback(event) {
@@ -401,7 +405,7 @@ async function submitFeedback(event) {
 async function shareResult() {
   if (!lastResult) return;
   const p = PROFILES[lastResult.primary]; const second = PROFILES[lastResult.secondary];
-  const text = `我的花少2旅行人格是「${p.name}｜${p.archetype}」，匹配度 ${lastResult.match}%。第二人格是${second.name}。\n${p.quote}\n你在七人旅行团里会是谁？`;
+  const text = `我的花少2旅行人格是「${p.name}｜${p.archetype}」，匹配度 ${lastResult.match}%。第二人格是${second.name}。\n${p.quote}\n测测你的旅行人格。`;
   try { await navigator.clipboard.writeText(text); toast("结果文案已复制"); } catch (_) { toast("复制失败，请手动截图保存"); }
 }
 
