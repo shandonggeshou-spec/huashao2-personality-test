@@ -39,17 +39,18 @@ nav { display: flex; align-items: center; gap: 18px; }
 .hero-copy { width: 100%; position: relative; z-index: 2; }
 .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: .18em; color: var(--orange-dark); text-transform: uppercase; }
 .eyebrow > span { width: 36px; height: 2px; background: currentColor; }
-.traveler-ticket { position: relative; margin: 26px 0 42px; min-height: 184px; padding: 26px 34px 24px 116px; border: 2px solid var(--ink); border-radius: 25px; box-shadow: 8px 10px 0 var(--ink); background: rgba(247, 241, 231, .18); }
+.traveler-ticket { position: relative; margin: 24px 0 48px; min-height: 164px; padding: 20px 24px 18px 108px; border: 2px solid var(--ink); border-radius: 25px; box-shadow: 8px 10px 0 var(--ink); background: rgba(247, 241, 231, .18); }
 .traveler-ticket::before, .traveler-ticket::after { content: ""; position: absolute; left: -12px; width: 22px; height: 22px; border: 2px solid var(--ink); border-left: 0; border-radius: 0 50% 50% 0; background: var(--paper); }
 .traveler-ticket::before { top: 30%; }
 .traveler-ticket::after { bottom: 30%; }
 .ticket-stub { position: absolute; inset: 0 auto 0 0; width: 82px; display: grid; place-items: center; align-content: center; border-right: 1px dashed rgba(33, 29, 27, .65); color: var(--orange); font-family: "ZCOOL XiaoWei", serif; font-size: 25px; line-height: 1.05; letter-spacing: .08em; }
-.traveler-lineup { display: block; width: 100%; height: 134px; object-fit: contain; }
-h1 { margin: 0 0 24px; font-family: "Songti SC", STSong, "Noto Serif CJK SC", serif; font-weight: 900; font-size: clamp(62px, 8.2vw, 102px); line-height: 1.02; letter-spacing: -.065em; text-shadow: .012em .01em 0 currentColor; }
+.traveler-lineup { display: block; width: 100%; height: 124px; object-fit: contain; }
+h1 { margin: 0 0 34px; font-family: "Songti SC", STSong, "Noto Serif CJK SC", serif; font-weight: 900; font-size: clamp(62px, 8.2vw, 102px); line-height: 1.02; letter-spacing: -.065em; text-shadow: .012em .01em 0 currentColor; }
 h1 > span { white-space: nowrap; }
 h1 em { color: var(--orange); font-style: normal; white-space: nowrap; position: relative; }
 h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 10px; background: url("data:image/svg+xml,%3Csvg width='300' height='10' viewBox='0 0 300 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 8C68 1 214 1 298 5' fill='none' stroke='%23ed5b3d' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat; }
-.hero-note { max-width: 900px; margin: 0; padding: 0; list-style: none; font-family: "Songti SC", STSong, serif; font-weight: 600; font-size: clamp(17px, 2vw, 21px); line-height: 1.75; color: #514841; }
+.hero-note { max-width: 900px; margin: 0; padding: 0; list-style: none; font-family: "Songti SC", STSong, serif; font-weight: 600; font-size: clamp(17px, 2vw, 21px); line-height: 1.68; color: #514841; }
+.hero-note li + li { margin-top: 5px; }
 .hero-note li { position: relative; padding-left: 1em; }
 .hero-note li::before { content: "•"; position: absolute; left: 0; color: var(--orange); }
 .duration-meta { flex: none; color: #8b827b; font-size: 12px; white-space: nowrap; }
@@ -173,9 +174,9 @@ textarea { resize: vertical; }
 }
 @media (min-width: 901px) {
   .hero-screen { padding-top: 42px; padding-bottom: 42px; }
-  .traveler-ticket { min-height: 154px; margin-block: 20px 28px; padding-block: 17px 15px; }
-  .traveler-lineup { height: 118px; }
-  h1 { font-size: clamp(60px, 5.8vw, 84px); margin-bottom: 15px; }
+  .traveler-ticket { min-height: 142px; margin-block: 18px 35px; padding: 13px 22px 11px 102px; }
+  .traveler-lineup { height: 116px; }
+  h1 { font-size: clamp(60px, 5.8vw, 84px); margin-bottom: 24px; }
   .hero-note { font-size: 18px; line-height: 1.55; }
   .hero-actions { margin-top: 18px; }
   .hero-actions .primary-button { min-height: 64px; }
@@ -221,10 +222,10 @@ textarea { resize: vertical; }
   dialog { padding: 35px 22px 26px; }
 }
 @media (max-width: 680px) and (min-height: 761px) {
-  .traveler-ticket { min-height: 160px; margin: 24px 0 34px; padding: 25px 13px 22px 92px; }
+  .traveler-ticket { min-height: 142px; margin: 24px 0 38px; padding: 15px 9px 13px 82px; }
   .ticket-stub { width: 74px; font-size: 24px; }
-  .traveler-lineup { height: 110px; }
-  h1 { font-size: clamp(37px, 10.5vw, 44px); line-height: 1.02; }
+  .traveler-lineup { height: 112px; }
+  h1 { margin-bottom: 24px; font-size: clamp(37px, 10.5vw, 44px); line-height: 1.02; }
   .hero-note { font-size: 15px; line-height: 1.65; }
   .hero-actions { margin-top: 24px; }
   .hero-actions .primary-button { min-height: 66px; }
@@ -234,11 +235,11 @@ textarea { resize: vertical; }
   .brand-mark { width: 32px; height: 32px; font-size: 19px; }
   .hero-screen { min-height: calc(100svh - 58px); padding-block: 14px 10px; gap: 0; }
   .hero-screen .eyebrow { font-size: 10px; }
-  .traveler-ticket { min-height: 112px; margin: 13px 0 17px; padding: 18px 13px 15px 68px; border-radius: 16px; box-shadow: 5px 6px 0 var(--ink); }
+  .traveler-ticket { min-height: 100px; margin: 13px 0 22px; padding: 9px 7px 8px 61px; border-radius: 16px; box-shadow: 5px 6px 0 var(--ink); }
   .traveler-ticket::before, .traveler-ticket::after { left: -9px; width: 16px; height: 16px; }
   .ticket-stub { width: 52px; font-size: 18px; }
-  .traveler-lineup { height: 78px; }
-  h1 { margin: 0 0 9px; font-size: clamp(33px, 10.8vw, 39px); line-height: 1.02; }
+  .traveler-lineup { height: 82px; }
+  h1 { margin: 0 0 16px; font-size: clamp(33px, 10.8vw, 39px); line-height: 1.02; }
   .hero-note { font-size: 12px; line-height: 1.48; }
   .duration-meta { font-size: 10px; }
   .hero-actions { margin-top: 10px; gap: 9px; }
