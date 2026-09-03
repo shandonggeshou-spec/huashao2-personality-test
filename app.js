@@ -371,7 +371,7 @@ function drawRadar(values, color) {
   points(1).forEach(([x,y]) => { ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(x,y); ctx.stroke(); });
   const dataPoints = DIMENSIONS.map(([id], i) => { const angle = -Math.PI / 2 + i * Math.PI * 2 / 6; const ratio = values[id] / 100; return [cx + Math.cos(angle) * radius * ratio, cy + Math.sin(angle) * radius * ratio]; });
   ctx.fillStyle = `${color}33`; ctx.strokeStyle = color; ctx.lineWidth = 2; polygon(ctx, dataPoints, true);
-  ctx.font = `12px "Noto Sans SC"`; ctx.fillStyle = "#4d443e"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  ctx.font = `12px "PingFang SC", sans-serif`; ctx.fillStyle = "#4d443e"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
   DIMENSIONS.forEach(([, label], i) => { const angle = -Math.PI / 2 + i * Math.PI * 2 / 6; const x = cx + Math.cos(angle) * radius * 1.26; const y = cy + Math.sin(angle) * radius * 1.17; ctx.fillText(label, x, y); });
 }
 

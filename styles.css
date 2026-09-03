@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "ZCOOL XiaoWei";
+  src: url("assets/fonts/zcool-xiaowei-critical.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0030, U+0032, U+0048, U+0053, U+82B1;
+}
+@font-face {
+  font-family: "ZCOOL XiaoWei";
+  src: url("assets/fonts/zcool-xiaowei-content.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --ink: #211d1b;
   --paper: #f7f1e7;
@@ -16,7 +32,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0; color: var(--ink); background: var(--paper);
-  font-family: "Noto Sans SC", system-ui, sans-serif; min-height: 100vh;
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; min-height: 100vh;
   background-image:
     radial-gradient(circle at 18% 22%, rgba(151, 111, 63, .07), transparent 29%),
     radial-gradient(circle at 83% 72%, rgba(151, 111, 63, .055), transparent 26%);
@@ -46,7 +62,7 @@ nav { display: flex; align-items: center; gap: 18px; }
 .ticket-stub { position: absolute; inset: 0 auto 0 0; width: 82px; display: grid; place-items: center; align-content: center; padding-left: 8px; border-right: 1px dashed rgba(33, 29, 27, .65); color: var(--orange); font-family: "ZCOOL XiaoWei", serif; font-size: 25px; line-height: 1.05; letter-spacing: .08em; }
 .traveler-lineup { display: flex; align-items: center; justify-content: space-between; height: 124px; }
 .lineup-head { display: block; position: relative; flex: 1 1 0; min-width: 0; height: 124px; }
-.lineup-head::before { content: ""; position: absolute; left: 50%; top: 50%; width: 65px; height: 124px; transform: translate(-50%, -50%); background-image: url("assets/traveler-lineup-ink.png"); background-repeat: no-repeat; background-size: 700% 100%; }
+.lineup-head::before { content: ""; position: absolute; left: 50%; top: 50%; width: 65px; height: 124px; transform: translate(-50%, -50%); background-image: url("assets/traveler-lineup-ink.png"); background-image: image-set(url("assets/traveler-lineup-ink.avif") type("image/avif"), url("assets/traveler-lineup-ink.png") type("image/png")); background-repeat: no-repeat; background-size: 700% 100%; }
 .lineup-head-1::before { background-position: 0 center; }
 .lineup-head-2::before { background-position: 16.666% center; }
 .lineup-head-3::before { background-position: 33.333% center; }
@@ -109,7 +125,7 @@ h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px;
 .question-card::after { content: ""; position: absolute; width: 54px; height: 54px; right: -10px; top: -10px; border-top: 2px solid var(--orange); border-right: 2px solid var(--orange); }
 .scenario { color: var(--orange-dark); font-weight: 700; font-size: 13px; letter-spacing: .12em; margin: 0 0 16px; }
 .question-card h2 { max-width: 100%; font-family: "ZCOOL XiaoWei", "Songti SC", STSong, serif; font-size: clamp(29px, 2.7vw, 38px); font-weight: 400; line-height: 1.38; letter-spacing: .015em; overflow-wrap: break-word; margin: 0 0 32px; }
-.question-glyph-fallback { font-family: "Noto Sans SC", "PingFang SC", sans-serif; font-weight: 400; }
+.question-glyph-fallback { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; font-weight: 400; }
 .options { display: grid; gap: 13px; }
 .option { width: 100%; border: 1px solid #d8ccbc; background: transparent; padding: 17px 20px; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 15px; transition: .2s; line-height: 1.5; }
 .option.selected { color: #fff; background: var(--orange); border-color: var(--orange); }
