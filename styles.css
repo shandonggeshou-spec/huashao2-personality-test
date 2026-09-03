@@ -157,7 +157,7 @@ textarea { resize: vertical; }
   .result-symbol { font-size: 100px; } .match-seal { position: absolute; right: 22px; top: 22px; width: 88px; height: 88px; }
 }
 @media (max-width: 680px) {
-  .site-header { height: 66px; padding: 0 18px; } nav .text-button:not(.privacy-link) { display: none; } .privacy-link { font-size: 12px; }
+  .site-header { height: 66px; padding: 0 18px; } nav .text-button:not(.nav-utility-link) { display: none; } .nav-utility-link { font-size: 12px; }
   .hero-screen { padding: 30px 20px 24px; min-height: calc(100svh - 66px); gap: 16px; overflow: clip; }
   .hero-copy { flex: none; }
   .eyebrow { font-size: 12px; gap: 8px; letter-spacing: .14em; }
@@ -201,7 +201,8 @@ textarea { resize: vertical; }
   .site-header { padding: 0 13px; }
   .brand { gap: 8px; }
   .brand-mark { width: 34px; height: 34px; }
-  .privacy-link { display: none; }
+  nav { gap: 5px; }
+  .nav-utility-link { padding-inline: 5px; font-size: 11px; }
   .hero-screen { padding-inline: 17px; }
   h1 { font-size: clamp(32px, 9.5vw, 35px); }
   .question-card h2 { font-size: 20px; }
