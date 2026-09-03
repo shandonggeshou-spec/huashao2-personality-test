@@ -346,13 +346,13 @@ function renderResult(result) {
   $("#result-symbol").textContent = profile.symbol;
   $("#result-name").textContent = profile.name;
   $("#result-archetype").textContent = profile.archetype;
-  $("#result-summary").textContent = profile.summary;
+  $("#result-summary").textContent = `“${profile.quote}”`;
+  $("#result-explanation").textContent = profile.summary;
   $("#match-score").textContent = result.match;
   $("#result-hero").style.background = profile.color;
   $("#trait-list").innerHTML = profile.traits.map(([title, text]) => `<div class="trait"><h4>${title}</h4><p>${text}</p></div>`).join("");
   $("#manual-grid").innerHTML = profile.manual.map(([title, text]) => `<div class="manual-item"><small>${title}</small><p>${text}</p></div>`).join("");
   $("#ranking-list").innerHTML = spectrum.map(([id, score]) => `<div class="rank-row"><span>${PROFILES[id].name}</span><div class="rank-track"><i style="width:${Math.round(28 + ((score - minRank) / Math.max(1, maxRank - minRank)) * 72)}%;background:${PROFILES[id].color}"></i></div><strong>${score}</strong></div>`).join("");
-  $("#result-quote").textContent = profile.quote;
   drawRadar(result.dimensions, profile.color);
 }
 
