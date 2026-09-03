@@ -36,15 +36,17 @@ nav { display: flex; align-items: center; gap: 18px; }
 .hero-copy { flex: 1.05; position: relative; z-index: 2; }
 .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: .18em; color: var(--orange-dark); text-transform: uppercase; }
 .eyebrow > span { width: 36px; height: 2px; background: currentColor; }
-.traveler-heads { display: flex; align-items: center; gap: 7px; margin: 20px 0 14px; padding-left: 2px; }
-.traveler-head { width: clamp(58px, 5vw, 72px); aspect-ratio: 1; margin: 0; position: relative; animation: traveler-float 3.1s ease-in-out infinite; will-change: transform; }
+.traveler-heads { display: flex; align-items: flex-end; width: fit-content; margin: 20px 0 10px; padding: 0 12px; animation: traveler-breathe 4.8s ease-in-out infinite; transform-origin: center bottom; }
+.traveler-head { width: clamp(62px, 5.1vw, 74px); aspect-ratio: 1; margin: 0 0 0 clamp(-17px, -1.15vw, -12px); position: relative; }
 .traveler-head:first-child { margin-left: 0; }
-.traveler-head:nth-child(2) { animation-delay: -.4s; } .traveler-head:nth-child(3) { animation-delay: -.8s; } .traveler-head:nth-child(4) { animation-delay: -1.2s; }
-.traveler-head:nth-child(5) { animation-delay: -1.6s; } .traveler-head:nth-child(6) { animation-delay: -2s; } .traveler-head:nth-child(7) { animation-delay: -2.4s; }
+.traveler-head:nth-child(1), .traveler-head:nth-child(7) { z-index: 1; transform: translateY(11px) scale(.84); }
+.traveler-head:nth-child(2), .traveler-head:nth-child(6) { z-index: 2; transform: translateY(5px) scale(.93); }
+.traveler-head:nth-child(3), .traveler-head:nth-child(5) { z-index: 3; transform: translateY(1px) scale(1); }
+.traveler-head:nth-child(4) { z-index: 4; transform: translateY(-2px) scale(1.07); }
 .traveler-head img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.traveler-head:hover { z-index: 3; animation-play-state: paused; transform: translateY(-6px) scale(1.08) rotate(0); }
-@keyframes traveler-float { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-5px) rotate(1deg); } }
-@media (prefers-reduced-motion: reduce) { .traveler-head { animation: none; } }
+.traveler-head:hover { z-index: 8; }
+@keyframes traveler-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) { .traveler-heads { animation: none; } }
 h1 { margin: 8px 0 24px; font-family: "ZCOOL XiaoWei", serif; font-weight: 400; font-size: clamp(48px, 5.4vw, 82px); line-height: 1.08; letter-spacing: -.04em; }
 h1 > span { white-space: nowrap; }
 h1 em { color: var(--orange); font-style: normal; white-space: nowrap; position: relative; }
@@ -172,8 +174,12 @@ textarea { resize: vertical; }
   .hero-screen { padding: 30px 20px 24px; min-height: calc(100svh - 66px); gap: 16px; overflow: clip; }
   .hero-copy { flex: none; }
   .eyebrow { font-size: 12px; gap: 8px; letter-spacing: .14em; }
-  .traveler-heads { justify-content: space-between; gap: 3px; width: 100%; margin: 10px 0 6px; padding: 0; }
-  .traveler-head { width: clamp(40px, 11.6vw, 45px); }
+  .traveler-heads { justify-content: center; width: 100%; margin: 9px 0 3px; padding: 0 8px; }
+  .traveler-head { width: clamp(46px, 13.4vw, 54px); margin-left: clamp(-15px, -3.9vw, -11px); }
+  .traveler-head:nth-child(1), .traveler-head:nth-child(7) { transform: translateY(9px) scale(.82); }
+  .traveler-head:nth-child(2), .traveler-head:nth-child(6) { transform: translateY(4px) scale(.91); }
+  .traveler-head:nth-child(3), .traveler-head:nth-child(5) { transform: translateY(1px) scale(.98); }
+  .traveler-head:nth-child(4) { transform: translateY(-2px) scale(1.05); }
   h1 { margin: 3px 0 14px; font-size: clamp(34px, 9.7vw, 41px); line-height: 1.12; letter-spacing: -.05em; }
   .hero-points { font-size: 14px; line-height: 1.58; }
   .hero-points li { padding-left: 14px; }
@@ -211,7 +217,7 @@ textarea { resize: vertical; }
   .site-header { height: 58px; }
   .brand-mark { width: 32px; height: 32px; font-size: 19px; }
   .hero-screen { min-height: calc(100svh - 58px); padding-block: 20px 16px; gap: 10px; }
-  .traveler-heads { margin-block: 9px 5px; }
+  .traveler-heads { margin-block: 8px 3px; }
   h1 { margin-block: 2px 10px; }
   .hero-actions { margin-top: 16px; }
   .quiz-screen { min-height: calc(100svh - 58px); padding: 9px 10px 10px; }
