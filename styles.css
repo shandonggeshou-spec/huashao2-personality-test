@@ -60,16 +60,9 @@ nav { display: flex; align-items: center; gap: 18px; }
 .traveler-ticket::before { top: 30%; }
 .traveler-ticket::after { bottom: 30%; }
 .ticket-stub { position: absolute; inset: 0 auto 0 0; width: 82px; display: grid; place-items: center; align-content: center; padding-left: 8px; border-right: 1px dashed rgba(33, 29, 27, .65); color: var(--orange); font-family: "ZCOOL XiaoWei", serif; font-size: 25px; line-height: 1.05; letter-spacing: .08em; }
-.traveler-lineup { display: flex; align-items: center; justify-content: space-between; height: 124px; }
-.lineup-head { display: block; position: relative; flex: 1 1 0; min-width: 0; height: 124px; }
-.lineup-head::before { content: ""; position: absolute; left: 50%; top: 50%; width: 65px; height: 124px; transform: translate(-50%, -50%); background-image: url("assets/traveler-lineup-ink.png"); background-image: image-set(url("assets/traveler-lineup-ink.avif") type("image/avif"), url("assets/traveler-lineup-ink.png") type("image/png")); background-repeat: no-repeat; background-size: 700% 100%; }
-.lineup-head-1::before { background-position: 0 center; }
-.lineup-head-2::before { background-position: 16.666% center; }
-.lineup-head-3::before { background-position: 33.333% center; }
-.lineup-head-4::before { background-position: 50% center; }
-.lineup-head-5::before { background-position: 66.666% center; }
-.lineup-head-6::before { background-position: 83.333% center; }
-.lineup-head-7::before { background-position: 100% center; }
+.traveler-lineup { display: flex; align-items: center; justify-content: space-between; gap: clamp(7px, 1.3vw, 18px); height: 124px; overflow: hidden; }
+.lineup-head { display: grid; place-items: center; flex: 1 1 0; min-width: 0; height: 124px; overflow: hidden; }
+.lineup-head img { display: block; width: auto; height: 116px; max-width: 100%; object-fit: contain; object-position: center bottom; }
 h1 { margin: 0 0 38px; font-family: "Songti SC", STSong, "Noto Serif CJK SC", serif; font-weight: 900; font-size: clamp(62px, 8.2vw, 102px); line-height: 1.5; letter-spacing: -.065em; text-shadow: .012em .01em 0 currentColor; }
 h1 > span { white-space: nowrap; }
 h1 em { color: var(--orange); font-style: normal; white-space: nowrap; position: relative; }
@@ -204,7 +197,7 @@ textarea { resize: vertical; }
   .traveler-ticket { width: 88%; min-height: 136px; margin-block: 18px 40px; padding: 9px 18px 7px 94px; }
   .traveler-lineup { height: 118px; }
   .lineup-head { height: 122px; }
-  .lineup-head::before { width: 64px; height: 122px; }
+  .lineup-head img { height: 116px; }
   h1 { font-size: clamp(60px, 5.8vw, 84px); margin-bottom: 30px; }
   .hero-note { font-size: 18px; line-height: 1.72; }
   .hero-actions { margin-top: 18px; }
@@ -218,7 +211,7 @@ textarea { resize: vertical; }
   .traveler-ticket { width: 94%; padding-right: 8px; }
   .traveler-lineup { height: 105px; }
   .lineup-head { height: 86px; }
-  .lineup-head::before { width: 42px; height: 86px; }
+  .lineup-head img { height: 84px; }
   h1 { margin: 3px 0 22px; font-size: clamp(34px, 9.7vw, 41px); line-height: 1.5; letter-spacing: -.05em; }
   .hero-note { width: min(73%, 270px); }
   .hero-points { font-size: 14px; line-height: 1.58; }
@@ -260,7 +253,7 @@ textarea { resize: vertical; }
   .ticket-stub { width: 62px; font-size: 22px; }
   .traveler-lineup { height: 108px; }
   .lineup-head { height: 98px; }
-  .lineup-head::before { width: 48px; height: 98px; }
+  .lineup-head img { height: 96px; }
   h1 { margin-bottom: 27px; font-size: clamp(37px, 10.5vw, 44px); line-height: 1.5; }
   .hero-note { font-size: 15px; line-height: 1.78; }
   .hero-actions { margin-top: 24px; }
@@ -276,7 +269,7 @@ textarea { resize: vertical; }
   .ticket-stub { width: 44px; padding-left: 5px; font-size: 17px; }
   .traveler-lineup { height: 80px; }
   .lineup-head { height: 76px; }
-  .lineup-head::before { width: 37px; height: 76px; }
+  .lineup-head img { height: 74px; }
   h1 { margin: 0 0 18px; font-size: clamp(33px, 10.8vw, 39px); line-height: 1.5; }
   .hero-note { font-size: 12px; line-height: 1.64; }
   .duration-meta { font-size: 10px; }
