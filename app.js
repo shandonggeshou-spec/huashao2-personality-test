@@ -526,14 +526,14 @@ async function submitFeedback(event) {
 
 function finishFeedbackSubmission(form, status, submit) {
   status.className = "form-status success";
-  status.textContent = "✓ 意见反馈成功，感谢你的建议";
+  status.textContent = "反馈成功";
   window.setTimeout(() => {
     $("#feedback-dialog").close();
     form.reset();
     syncFeedbackSelect("result");
     submit.disabled = false; submit.textContent = "提交反馈";
     status.className = "form-status"; status.textContent = "";
-    toast("意见反馈成功，感谢你的建议");
+    toast("反馈成功", "success-card");
   }, 650);
 }
 
@@ -544,7 +544,17 @@ async function shareResult() {
   try { await navigator.clipboard.writeText(text); toast("结果文案已复制"); } catch (_) { toast("复制失败，请手动截图保存"); }
 }
 
-function toast(message) { const el = $("#toast"); el.textContent = message; el.classList.add("show"); setTimeout(() => el.classList.remove("show"), 2200); }
+let toastTimer = null;
+function toast(message, variant = "") {
+  const el = $("#toast");
+  const backdrop = $("#toast-backdrop");
+  window.clearTimeout(toastTimer);
+  el.className = `toast${variant ? ` ${variant}` : ""}`;
+  el.textContent = message;
+  backdrop.classList.toggle("show", variant === "success-card");
+  requestAnimationFrame(() => el.classList.add("show"));
+  toastTimer = window.setTimeout(() => { el.classList.remove("show"); backdrop.classList.remove("show"); }, variant === "success-card" ? 1800 : 2200);
+}
 function syncFeedbackSelect(value) {
   const select = $("[data-feedback-select]");
   const option = select?.querySelector(`[data-feedback-value="${value}"]`);
