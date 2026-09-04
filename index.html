@@ -9,10 +9,13 @@
   <meta name="theme-color" content="#ef5b3f">
   <title>花路人格局｜测测你的旅行人格</title>
   <link rel="preload" href="assets/fonts/zcool-xiaowei-critical.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20260904-v320">
+  <link rel="preload" href="assets/traveler-lineup-current.avif?v=20260905-fast1" as="image" type="image/avif" fetchpriority="high" media="(min-width: 681px)">
+  <link rel="preload" href="assets/traveler-lineup-current-mobile.avif?v=20260905-fast1" as="image" type="image/avif" fetchpriority="high" media="(max-width: 680px)">
+  <link rel="stylesheet" href="styles.css?v=20260905-fast1">
   <script defer src="config.js"></script>
   <script defer src="response-norms.js?v=20260904-v320"></script>
-  <script defer src="app.js?v=20260904-v320"></script>
+  <script defer src="questions-extra.js?v=20260905-fast1"></script>
+  <script defer src="app.js?v=20260905-fast1"></script>
 </head>
 <body data-screen="intro-screen">
   <div class="noise" aria-hidden="true"></div>
@@ -35,13 +38,12 @@
         <div class="traveler-ticket">
           <div class="ticket-stub" aria-hidden="true">HS<br>02</div>
           <div class="traveler-lineup" role="img" aria-label="七位旅行团成员的手绘头像">
-            <picture class="lineup-head"><source srcset="assets/result-avatar-1.avif" type="image/avif"><img src="assets/result-avatar-1.png" alt="" width="208" height="335" decoding="async"></picture>
-            <picture class="lineup-head"><source srcset="assets/result-avatar-2.avif" type="image/avif"><img src="assets/result-avatar-2.png" alt="" width="208" height="331" decoding="async"></picture>
-            <picture class="lineup-head"><source srcset="assets/result-avatar-3.avif" type="image/avif"><img src="assets/result-avatar-3.png" alt="" width="237" height="338" decoding="async"></picture>
-            <picture class="lineup-head"><source srcset="assets/result-avatar-4.avif" type="image/avif"><img src="assets/result-avatar-4.png" alt="" width="206" height="347" decoding="async"></picture>
-            <picture class="lineup-head"><source srcset="assets/result-avatar-5.avif" type="image/avif"><img src="assets/result-avatar-5.png" alt="" width="207" height="316" decoding="async"></picture>
-            <picture class="lineup-head"><source srcset="assets/result-avatar-6.avif" type="image/avif"><img src="assets/result-avatar-6.png" alt="" width="204" height="323" decoding="async"></picture>
-            <picture class="lineup-head"><source srcset="assets/result-avatar-7.avif" type="image/avif"><img src="assets/result-avatar-7.png" alt="" width="215" height="339" decoding="async"></picture>
+            <picture class="lineup-picture">
+              <source media="(max-width: 680px)" srcset="assets/traveler-lineup-current-mobile.avif?v=20260905-fast1" type="image/avif">
+              <source media="(max-width: 680px)" srcset="assets/traveler-lineup-current-mobile.png?v=20260905-fast1" type="image/png">
+              <source srcset="assets/traveler-lineup-current.avif?v=20260905-fast1" type="image/avif">
+              <img src="assets/traveler-lineup-current.png?v=20260905-fast1" alt="" width="1400" height="248" decoding="sync" fetchpriority="high">
+            </picture>
           </div>
         </div>
         <h1 id="hero-title">七人旅行团里，<br><em>你是哪种人格？</em></h1>

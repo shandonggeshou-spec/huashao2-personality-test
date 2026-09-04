@@ -220,12 +220,6 @@ function loadExtraQuestions() {
   return extraQuestionsPromise;
 }
 
-window.addEventListener("load", () => {
-  const begin = () => loadExtraQuestions();
-  if ("requestIdleCallback" in window) requestIdleCallback(begin, { timeout: 1200 });
-  else window.setTimeout(begin, 600);
-}, { once: true });
-
 function shuffle(items) {
   const copy = [...items];
   for (let index = copy.length - 1; index > 0; index -= 1) {
