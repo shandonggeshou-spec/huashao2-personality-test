@@ -12,11 +12,11 @@
   <link rel="preload" href="assets/fonts/zcool-kuaile-questions.woff2?v=20260905-fast2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/traveler-lineup-current.avif?v=20260905-fast1" as="image" type="image/avif" fetchpriority="high" media="(min-width: 681px)">
   <link rel="preload" href="assets/traveler-lineup-current-mobile.avif?v=20260905-fast1" as="image" type="image/avif" fetchpriority="high" media="(max-width: 680px)">
-  <link rel="stylesheet" href="styles.css?v=20260905-fast2">
+  <link rel="stylesheet" href="styles.css?v=20260905-feedback1">
   <script defer src="config.js"></script>
   <script defer src="response-norms.js?v=20260904-v320"></script>
   <script defer src="questions-extra.js?v=20260905-fast1"></script>
-  <script defer src="app.js?v=20260905-fast2"></script>
+  <script defer src="app.js?v=20260905-feedback1"></script>
 </head>
 <body data-screen="intro-screen">
   <div class="noise" aria-hidden="true"></div>
@@ -148,21 +148,26 @@
     <span class="eyebrow"><span></span> 旅行意见箱</span>
     <h2>哪一部分让你有话想说？</h2>
     <form id="feedback-form">
-      <label>反馈类型
-        <select name="category" required>
-          <option value="result">结果不准确</option>
-          <option value="question">题目或选项</option>
-          <option value="bug">页面问题</option>
-          <option value="idea">新想法</option>
-          <option value="other">其他</option>
-        </select>
-      </label>
+      <div class="form-field">
+        <span class="form-label">反馈类型</span>
+        <div class="feedback-select" data-feedback-select>
+          <input type="hidden" name="category" value="result">
+          <button class="feedback-select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false"><span>结果不准确</span><i aria-hidden="true"></i></button>
+          <div class="feedback-select-menu" role="listbox" hidden>
+            <button type="button" role="option" data-feedback-value="result" class="active" aria-selected="true">结果不准确</button>
+            <button type="button" role="option" data-feedback-value="question" aria-selected="false">题目或选项</button>
+            <button type="button" role="option" data-feedback-value="bug" aria-selected="false">页面问题</button>
+            <button type="button" role="option" data-feedback-value="idea" aria-selected="false">新想法</button>
+            <button type="button" role="option" data-feedback-value="other" aria-selected="false">其他</button>
+          </div>
+        </div>
+      </div>
       <label>你的反馈
         <textarea name="message" rows="5" maxlength="1000" placeholder="请尽量具体一些……" required></textarea>
       </label>
       <p class="form-note">反馈无需填写姓名、手机号、账号或其他个人信息。</p>
       <button class="primary-button full" type="submit">提交反馈</button>
-      <p class="form-status" id="feedback-status"></p>
+      <p class="form-status" id="feedback-status" role="status" aria-live="polite"></p>
     </form>
   </dialog>
 

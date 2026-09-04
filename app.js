@@ -504,17 +504,37 @@ async function submitFeedback(event) {
   event.preventDefault();
   const form = event.currentTarget; const data = new FormData(form);
   const payload = { category: data.get("category"), message: data.get("message"), result_public_id: lastResult?.id || null, result_type: lastResult?.primary || null, page_url: location.href.slice(0, 500) };
-  const status = $("#feedback-status"); status.textContent = "正在投递……";
+  const status = $("#feedback-status");
+  const submit = form.querySelector('[type="submit"]');
+  submit.disabled = true; submit.textContent = "正在提交……";
+  status.className = "form-status"; status.textContent = "正在投递……";
   if (cloudEnabled()) {
     try {
       const response = await fetch(`${CONFIG.supabaseUrl}/rest/v1/feedback`, { method: "POST", headers: headers(), body: JSON.stringify(payload) });
       if (!response.ok) throw new Error();
-      status.textContent = "收到啦，谢谢你认真告诉我们。"; form.reset(); return;
-    } catch (_) { status.textContent = "暂时没投递成功，请稍后重试。"; return; }
+      finishFeedbackSubmission(form, status, submit); return;
+    } catch (_) {
+      submit.disabled = false; submit.textContent = "提交反馈";
+      status.className = "form-status error"; status.textContent = "暂时没投递成功，请稍后重试。"; return;
+    }
   }
   const feedback = readLocalList("hl-feedback"); feedback.push({ ...payload, created_at: new Date().toISOString() });
   writeLocalList("hl-feedback", feedback.slice(-30));
-  status.textContent = "暂时没投递成功，请稍后重试。"; form.reset();
+  submit.disabled = false; submit.textContent = "提交反馈";
+  status.className = "form-status error"; status.textContent = "暂时没投递成功，请稍后重试。";
+}
+
+function finishFeedbackSubmission(form, status, submit) {
+  status.className = "form-status success";
+  status.textContent = "✓ 意见反馈成功，感谢你的建议";
+  window.setTimeout(() => {
+    $("#feedback-dialog").close();
+    form.reset();
+    syncFeedbackSelect("result");
+    submit.disabled = false; submit.textContent = "提交反馈";
+    status.className = "form-status"; status.textContent = "";
+    toast("意见反馈成功，感谢你的建议");
+  }, 650);
 }
 
 async function shareResult() {
@@ -525,14 +545,56 @@ async function shareResult() {
 }
 
 function toast(message) { const el = $("#toast"); el.textContent = message; el.classList.add("show"); setTimeout(() => el.classList.remove("show"), 2200); }
-function openDialog(id) { $(id).showModal(); }
-function closeDialogs() { $$('dialog[open]').forEach(dialog => dialog.close()); }
+function syncFeedbackSelect(value) {
+  const select = $("[data-feedback-select]");
+  const option = select?.querySelector(`[data-feedback-value="${value}"]`);
+  if (!select || !option) return;
+  select.querySelector('input[name="category"]').value = value;
+  select.querySelector(".feedback-select-trigger span").textContent = option.textContent;
+  select.querySelectorAll("[data-feedback-value]").forEach(button => {
+    const selected = button === option;
+    button.classList.toggle("active", selected);
+    button.setAttribute("aria-selected", String(selected));
+  });
+}
+function closeFeedbackSelect() {
+  const select = $("[data-feedback-select]");
+  if (!select) return;
+  select.querySelector(".feedback-select-menu").hidden = true;
+  select.querySelector(".feedback-select-trigger").setAttribute("aria-expanded", "false");
+}
+function handleFeedbackSelect(event) {
+  const select = event.target.closest("[data-feedback-select]");
+  if (!select) { closeFeedbackSelect(); return; }
+  const trigger = event.target.closest(".feedback-select-trigger");
+  if (trigger) {
+    const menu = select.querySelector(".feedback-select-menu");
+    const willOpen = menu.hidden;
+    menu.hidden = !willOpen;
+    trigger.setAttribute("aria-expanded", String(willOpen));
+    return;
+  }
+  const option = event.target.closest("[data-feedback-value]");
+  if (!option) return;
+  syncFeedbackSelect(option.dataset.feedbackValue);
+  closeFeedbackSelect();
+}
+function openDialog(id) {
+  if (id === "#feedback-dialog") {
+    const status = $("#feedback-status");
+    status.className = "form-status"; status.textContent = "";
+  }
+  $(id).showModal();
+}
+function closeDialogs() { closeFeedbackSelect(); $$('dialog[open]').forEach(dialog => dialog.close()); }
 
 document.addEventListener("click", event => {
+  handleFeedbackSelect(event);
   const action = event.target.closest("[data-action]")?.dataset.action;
   if (!action) return;
   ({ start: startQuiz, previous, next, restart: startQuiz, share: shareResult, "open-about": () => openDialog("#about-dialog"), "open-privacy": () => openDialog("#privacy-dialog"), "open-feedback": () => openDialog("#feedback-dialog"), "close-dialog": closeDialogs })[action]?.();
 });
+document.addEventListener("keydown", event => { if (event.key === "Escape") closeFeedbackSelect(); });
 $("#feedback-form").addEventListener("submit", submitFeedback);
 $$('dialog').forEach(dialog => dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); }));
 window.addEventListener("resize", () => { if (lastResult && $("#result-screen").classList.contains("active")) drawRadar(lastResult.dimensions, PROFILES[lastResult.primary].color); });

@@ -199,11 +199,22 @@ dialog h2 { font-family: "ZCOOL XiaoWei"; font-size: 36px; font-weight: 400; mar
 dialog p { line-height: 1.85; color: #625950; }
 .dialog-close { position: absolute; right: 18px; top: 12px; border: 0; background: none; font-size: 30px; cursor: pointer; }
 form { display: grid; gap: 17px; }
-label { display: grid; gap: 7px; font-size: 13px; font-weight: 700; }
+label, .form-field { display: grid; gap: 7px; font-size: 13px; font-weight: 700; }
+.form-label { display: block; }
 input, textarea, select { width: 100%; border: 1px solid #cfc2b2; background: var(--paper); padding: 12px; color: var(--ink); border-radius: 0; }
 textarea { resize: vertical; }
+.feedback-select { position: relative; width: 100%; z-index: 4; }
+.feedback-select-trigger { width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 10px 0 12px; border: 0; border-bottom: 1px solid #bdb5aa; border-radius: 0; background: transparent; color: #435653; text-align: left; cursor: pointer; box-shadow: none; }
+.feedback-select-trigger i { width: 9px; height: 9px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .16s ease; }
+.feedback-select-trigger[aria-expanded="true"] i { transform: rotate(225deg) translate(-2px, -1px); }
+.feedback-select-menu { position: absolute; top: 100%; left: 0; width: 100%; padding: 5px 0; border: 0; border-radius: 0; background: #ebe6dc; box-shadow: none; z-index: 5; }
+.feedback-select-menu button { width: 100%; padding: 10px 12px; border: 0; border-radius: 0; background: transparent; color: #43514f; text-align: left; cursor: pointer; }
+.feedback-select-menu button:hover, .feedback-select-menu button.active { background: #dcd6cb; color: var(--orange-dark); }
 .full { width: 100%; }
 .form-status { margin: 0; text-align: center; min-height: 18px; font-size: 12px; }
+.form-status.success { color: var(--green); font-weight: 700; }
+.form-status.error { color: var(--orange-dark); font-weight: 700; }
+.full:disabled { opacity: .58; cursor: wait; transform: none; box-shadow: 2px 3px 0 var(--ink); }
 .toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 20px); opacity: 0; background: var(--ink); color: var(--paper); padding: 11px 18px; z-index: 100; transition: .25s; pointer-events: none; }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
