@@ -7,7 +7,7 @@ create extension if not exists pgcrypto;
 create table if not exists public.test_results (
   id uuid primary key default gen_random_uuid(),
   public_id text not null unique check (public_id ~ '^HL-[A-Z0-9]+-[A-Z0-9]{4}$'),
-  assessment_version text not null default '3.0.0' check (char_length(assessment_version) between 1 and 20),
+  assessment_version text not null default '3.1.0' check (char_length(assessment_version) between 1 and 20),
   primary_type text not null check (primary_type in ('jing','ning','xu','zheng','mao','chen','yang')),
   secondary_type text not null check (secondary_type in ('jing','ning','xu','zheng','mao','chen','yang')),
   scores jsonb not null default '{}'::jsonb check (jsonb_typeof(scores) = 'object'),
@@ -45,13 +45,13 @@ create table if not exists public.feedback (
 comment on table public.feedback is 'Feedback without identity, contact, location, or IP fields.';
 
 -- 兼容曾执行过开发版脚本的项目：删除不再收集的地域字段和自建后台名单。
-alter table public.test_results add column if not exists assessment_version text not null default '3.0.0';
+alter table public.test_results add column if not exists assessment_version text not null default '3.1.0';
 alter table public.test_results add column if not exists calibrated_scores jsonb not null default '{}'::jsonb;
 alter table public.test_results add column if not exists dimension_raw_scores jsonb not null default '{}'::jsonb;
 alter table public.test_results add column if not exists dimension_calibrated_scores jsonb not null default '{}'::jsonb;
 alter table public.test_results add column if not exists question_ids jsonb not null default '[]'::jsonb;
 alter table public.test_results add column if not exists answer_records jsonb not null default '[]'::jsonb;
-alter table public.test_results alter column assessment_version set default '3.0.0';
+alter table public.test_results alter column assessment_version set default '3.1.0';
 alter table public.test_results drop column if exists city;
 alter table public.test_results drop column if exists region;
 alter table public.test_results drop column if exists country_code;

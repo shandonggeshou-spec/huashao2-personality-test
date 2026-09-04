@@ -1,5 +1,5 @@
 const CONFIG = window.APP_CONFIG || {};
-const ASSESSMENT_VERSION = "3.0.0";
+const ASSESSMENT_VERSION = "3.1.0";
 const QUESTIONS_PER_TEST = 24;
 const QUESTIONS_PER_CHAPTER = 4;
 
@@ -67,38 +67,38 @@ const BASE_QUESTIONS = [
     O("马上拉一张清单，逐项确认负责人和截止时间", ["zheng","yang"], {initiative:2, stability:1, devotion:2}),
     O("先问大家想住得舒服还是省预算，再做方案", ["jing","mao"], {initiative:1, boundary:1, devotion:2}),
     O("直接发一个自己最想住的地方，号召大家快决定", ["ning","chen"], {initiative:2, expression:1, confrontation:1}),
-    O("等气氛热起来再说，我不想一开始就像在上班", ["xu","chen"], {expression:1, boundary:1, stability:-1})]),
+    O("先用轻松话题熟悉彼此，安排等大家进入状态再谈", ["xu","chen"], {expression:1, boundary:1, stability:-1})]),
   Q("出发之前", "预算第一次分歧", "有人想住风景绝佳的贵酒店，有人坚持把钱留给后程。你最自然的反应是？", [
     O("把总预算摊开算，让数字代替争执", ["zheng","yang"], {boundary:1, stability:1, confrontation:1}),
     O("旅行开心最重要，贵一点也可以想办法补回来", ["xu","chen"], {expression:2, boundary:-1}),
     O("问清每个人的底线，做两档可选方案", ["jing","mao"], {devotion:2, stability:2}),
-    O("不喜欢含糊，我会明确说哪个选择更合理", ["ning","yang"], {confrontation:2, boundary:2})]),
+    O("直接说清我的预算底线，也请每个人表明取舍", ["ning","yang"], {confrontation:2, boundary:2})]),
   Q("出发之前", "打包现场", "同伴带了四个大箱子，还默认大家会帮忙。你会？", [
     O("先帮这一次，但明确之后每个人要管理好自己的行李", ["jing","ning"], {boundary:2, devotion:1, confrontation:1}),
     O("既然一起旅行，能搭把手就搭把手", ["mao","chen"], {devotion:2, boundary:-1}),
-    O("有点不舒服，但大概率先默默帮忙", ["yang","zheng"], {devotion:2, expression:-1}),
+    O("先一起把行李运走，路上再商量之后怎样分担", ["yang","zheng"], {devotion:2, expression:-1}),
     O("直接问：你准备怎么处理这些箱子？", ["ning","xu"], {expression:2, confrontation:2, boundary:2})]),
   Q("出发之前", "陌生人的第一晚", "大家客气地聊天，却没有真正熟起来。你更可能？", [
     O("组织一个轻松小游戏，让气氛先动起来", ["chen","jing"], {initiative:2, devotion:1, stability:1}),
     O("找一两个合拍的人聊深一点，没必要和所有人熟", ["xu","ning"], {boundary:2, expression:2}),
     O("享受这种客气的平静，慢慢观察", ["mao","yang"], {stability:2, initiative:-1}),
-    O("会担心是不是自己没照顾好大家，于是不断找话题", ["zheng","xu"], {devotion:2, stability:-2})]),
+    O("主动问一圈各自期待，让慢热的人也有机会开口", ["zheng","xu"], {devotion:2, stability:-2})]),
 
   Q("路上协作", "错过的集合时间", "一位同伴迟到，全队可能赶不上火车。你第一反应是？", [
     O("立刻查替代车次，同时让一个人联系对方", ["jing","zheng"], {initiative:2, stability:2, devotion:2}),
-    O("很生气，会当面说清这件事影响了所有人", ["ning","yang"], {confrontation:2, boundary:2}),
+    O("先明确迟到影响，抵达后再和对方约定下次规则", ["ning","yang"], {confrontation:2, boundary:2}),
     O("先赶车，等安全抵达后再谈责任", ["mao","jing"], {stability:2, confrontation:1}),
-    O("担心迟到的人是不是出了状况，顾不上责备", ["xu","chen"], {devotion:2, expression:1, boundary:-1})]),
+    O("先确认对方是否安全，必要时为 TA 调整行程", ["xu","chen"], {devotion:2, expression:1, boundary:-1})]),
   Q("路上协作", "没人愿意当导游", "路线复杂、意见很多，大家都不愿负责。你会？", [
     O("接下任务，但要求每个人承担一块具体工作", ["jing","ning"], {initiative:2, boundary:2, devotion:2}),
-    O("我可以做，只是会很担心大家不满意", ["zheng","yang"], {initiative:1, devotion:2, stability:-1}),
-    O("我更适合配合，一个靠谱的人来定就好", ["mao","yang"], {initiative:-1, stability:1}),
+    O("先接下导游角色，把关键节点准备成两套方案", ["zheng","yang"], {initiative:1, devotion:2, stability:-1}),
+    O("主动认领执行和补给，让擅长路线的人来定方向", ["mao","yang"], {initiative:-1, stability:1}),
     O("轮流当吧，今天谁最想去哪里就听谁的", ["chen","xu"], {boundary:1, expression:1, initiative:1})]),
   Q("路上协作", "意见被忽略", "你提了两次建议，大家都顺着另一个人继续讨论。你会？", [
     O("第三次明确说：请先听我把这个方案讲完", ["ning","jing"], {confrontation:2, expression:2, boundary:2}),
-    O("不再争取，但之后参与感会明显下降", ["yang","xu"], {expression:-2, stability:-1}),
-    O("换个更轻松的时机，单独和关键的人聊", ["mao","jing"], {stability:2, confrontation:1}),
-    O("怀疑是不是自己说得不好，重新整理一个更细的版本", ["zheng","yang"], {devotion:2, stability:-2})]),
+    O("先听完这一轮，稍后确认我的建议是不是被遗漏了", ["yang","xu"], {expression:-2, stability:-1}),
+    O("换个更轻松的时机，单独和关键的人聊", ["mao","chen"], {stability:2, confrontation:1}),
+    O("把建议整理得更具体，再用路线和时间请大家判断", ["zheng","yang"], {devotion:2, stability:-2})]),
   Q("路上协作", "意外多出的半天", "天气让原计划全部取消。你最希望？", [
     O("立刻找一个新的户外体验，别浪费时间", ["chen","ning"], {initiative:2, stability:1}),
     O("大家慢慢吃顿饭，聊聊最近的感受", ["xu","mao"], {expression:2, devotion:1}),
@@ -107,8 +107,8 @@ const BASE_QUESTIONS = [
 
   Q("关系升温", "深夜的倾诉", "同伴半夜敲门，说自己在团队里很孤独。你会？", [
     O("认真听完，先让对方确认自己的感受被看见", ["xu","jing"], {expression:2, devotion:2}),
-    O("陪着聊，但也会帮对方区分事实和猜测", ["jing","mao"], {stability:2, devotion:2}),
-    O("直接指出：如果想改变，明天需要自己表达", ["ning","yang"], {confrontation:2, boundary:2}),
+    O("陪着聊，但也会帮对方区分事实和猜测", ["jing","zheng"], {stability:2, devotion:2}),
+    O("提醒对方：我愿意支持，但明天需要由 TA 亲自表达", ["ning","yang"], {confrontation:2, boundary:2}),
     O("拉对方出去散步或吃东西，先换换心情", ["chen","mao"], {initiative:1, stability:1, expression:1})]),
   Q("关系升温", "小团体出现", "队伍自然形成几个更亲近的小圈子。你怎么看？", [
     O("很正常，亲疏有别，不必强求所有人一样亲密", ["mao","ning"], {boundary:2, stability:2}),
@@ -118,8 +118,8 @@ const BASE_QUESTIONS = [
   Q("关系升温", "朋友公开吐槽你", "亲近的人在饭桌上拿你的缺点开玩笑，大家都笑了。你会？", [
     O("当场笑过去，私下认真告诉对方我不喜欢", ["jing","yang"], {boundary:2, confrontation:1, stability:2}),
     O("当场反问，让对方知道这个玩笑越界了", ["ning","xu"], {boundary:2, confrontation:2, expression:2}),
-    O("如果没恶意就算了，别让一顿饭变难看", ["mao","chen"], {stability:2, confrontation:-1}),
-    O("表面没事，之后反复想是不是大家都这么看我", ["zheng","xu"], {stability:-2, expression:-1})]),
+    O("判断没有恶意就顺势带过，把轻松留在当下", ["mao","chen"], {stability:2, confrontation:-1}),
+    O("记下这份不舒服，之后找亲近的人确认真实看法", ["zheng","xu"], {stability:-2, expression:-1})]),
   Q("关系升温", "表达感谢", "旅途中有人一直默默照顾大家。临别前你会？", [
     O("当众具体说出 TA 做过的事，让付出被看见", ["jing","xu"], {expression:2, devotion:2}),
     O("准备一个实用的小礼物，话不用太多", ["yang","mao"], {devotion:2, expression:0}),
@@ -127,23 +127,23 @@ const BASE_QUESTIONS = [
     O("会感谢，但也提醒大家下次别总让一个人扛", ["ning","zheng"], {confrontation:1, boundary:2, devotion:2})]),
 
   Q("冲突现场", "真心话突然失控", "有人说出一句压抑已久的真话，饭桌瞬间安静。你会？", [
-    O("追问具体发生了什么，避免所有人只围绕情绪站队", ["jing","ning"], {confrontation:2, stability:2}),
+    O("先暂停站队，把事实经过和各自诉求一件件问清", ["jing","ning"], {confrontation:2, stability:2}),
     O("先接住说话的人，能说出来一定已经很难受", ["xu","zheng"], {expression:2, devotion:2}),
     O("建议今晚先停在这里，大家冷静后再谈", ["mao","yang"], {stability:2, boundary:1}),
     O("把自己的真实看法也说出来，长痛不如短痛", ["ning","chen"], {confrontation:2, expression:2})]),
   Q("冲突现场", "被误会没有付出", "有人当众说你一路都在享受，没为团队做什么。你会？", [
     O("列出自己做过的事，并要求对方说明判断依据", ["ning","yang"], {confrontation:2, boundary:2, stability:1}),
-    O("一下很委屈，可能无法冷静地解释", ["xu","zheng"], {expression:2, stability:-2}),
+    O("先讲清这句话让我受伤，再说明我在意的付出", ["xu","zheng"], {expression:2, stability:-2}),
     O("先确认对方真正缺的是哪部分支持，再谈分工", ["jing","mao"], {stability:2, devotion:2, confrontation:1}),
-    O("不想计较功劳，之后多做一点就好", ["chen","mao"], {devotion:1, boundary:-2})]),
+    O("先把眼前缺口补上，功劳留到事情结束后再谈", ["chen","mao"], {devotion:1, boundary:-2})]),
   Q("冲突现场", "朋友正在情绪化", "你知道对方的说法不完全符合事实，但 TA 正在崩溃。你会？", [
     O("此刻先安抚，等恢复后再核对事实", ["jing","mao"], {stability:2, devotion:2}),
-    O("温柔但马上纠正，错误的信息只会让事情更糟", ["yang","ning"], {confrontation:2, boundary:1}),
+    O("温和指出关键事实，但接受对方此刻可能听不进去", ["yang","ning"], {confrontation:2, boundary:1}),
     O("陪 TA 一起哭或生气，事实可以以后再说", ["xu","zheng"], {expression:2, devotion:2, stability:-1}),
     O("带 TA 离开现场做点别的，情绪过去自然会清楚", ["chen","mao"], {initiative:2, stability:1})]),
   Q("冲突现场", "一句道歉", "你确认自己无意中伤害了同伴。你会怎么道歉？", [
     O("直接说明我做错了什么，不解释动机", ["jing","ning"], {confrontation:2, stability:2, expression:1}),
-    O("会道歉，但需要先想很久怎样说才不尴尬", ["yang","zheng"], {expression:-1, stability:-1, devotion:1}),
+    O("先整理好重点，选双方都能听进去的时机道歉", ["yang","zheng"], {expression:-1, stability:-1, devotion:1}),
     O("真诚表达我的感受，希望两个人重新亲近", ["xu","chen"], {expression:2, devotion:2}),
     O("请对方吃点好的，边放松边把话说开", ["mao","chen"], {stability:2, initiative:1})]),
 
@@ -151,22 +151,22 @@ const BASE_QUESTIONS = [
     O("建立大家都认可的规则：轮换、抽签或补偿", ["yang","jing"], {boundary:2, stability:2, devotion:1}),
     O("我可以去住，尽快解决比继续争更重要", ["chen","zheng"], {devotion:2, boundary:-1}),
     O("谁做的安排谁先说解决方案，责任不能消失", ["ning","yang"], {confrontation:2, boundary:2}),
-    O("看谁最在意条件，我没那么讲究", ["mao","jing"], {stability:2, devotion:1})]),
+    O("看谁最在意条件，我没那么讲究", ["mao","xu"], {stability:2, devotion:1})]),
   Q("压力测试", "体力到达极限", "团队还想继续赶路，但你已经很累。你会？", [
     O("明确说我需要休息，不让团队猜我的状态", ["ning","jing"], {boundary:2, expression:2}),
-    O("再坚持一下，不想成为拖慢所有人的那个", ["yang","zheng"], {devotion:2, boundary:-2}),
+    O("先评估自己还能走多久，到临界点就提出休息", ["yang","zheng"], {devotion:2, boundary:-2}),
     O("提议就地吃饭休息，可能大家其实都累了", ["mao","jing"], {initiative:1, stability:2}),
     O("被新鲜风景吸引就又有能量，继续走", ["chen","xu"], {stability:1, initiative:1})]),
   Q("压力测试", "计划连续出错", "接连订错票、走错路，你开始怀疑自己不适合负责。你会？", [
-    O("暂停，把任务拆出去，请大家一起纠错", ["jing","mao"], {boundary:2, stability:2, devotion:1}),
-    O("更用力地掌控细节，必须把局面救回来", ["zheng","yang"], {initiative:2, devotion:2, stability:-2}),
+    O("暂停原计划，把决定权分出去，请大家一起纠错", ["jing","mao"], {boundary:2, stability:2, devotion:1}),
+    O("回到细节逐项排查，用更严密的检查把局面拉回来", ["zheng","yang"], {initiative:2, devotion:2, stability:-2}),
     O("承认这个方法不行，果断换人或换路线", ["ning","chen"], {confrontation:2, initiative:2, boundary:1}),
-    O("很需要有人先告诉我：没关系，不全是你的错", ["xu","zheng"], {expression:2, stability:-2})]),
+    O("先确认大家仍愿意信任我，再一起重整状态", ["xu","zheng"], {expression:2, stability:-2})]),
   Q("压力测试", "全队低气压", "大家又累又烦，任何一句话都可能点燃冲突。你会？", [
     O("减少讨论，先解决吃饭、洗澡、睡觉", ["mao","jing"], {stability:2, initiative:1}),
     O("用玩笑或小游戏让气氛松一点", ["chen","mao"], {initiative:2, expression:1}),
     O("不再假装没事，把最核心的不满说开", ["ning","xu"], {confrontation:2, expression:2}),
-    O("安静做好自己的事，避免再添乱", ["yang","zheng"], {devotion:1, expression:-1})]),
+    O("守住自己的节奏，把该做的部分稳定完成", ["yang","zheng"], {devotion:1, expression:-1})]),
 
   Q("旅程终章", "最后一次自由活动", "旅程只剩半天，你会选？", [
     O("完成一直想做的挑战，给旅程一个高能结尾", ["chen","ning"], {initiative:2, boundary:1}),
@@ -182,7 +182,7 @@ const BASE_QUESTIONS = [
     O("它暴露了系统问题：分工、规则和信息不清", ["jing","yang"], {stability:2, boundary:2}),
     O("它证明有些关系不必勉强，真实比和谐重要", ["ning","xu"], {confrontation:2, expression:2}),
     O("当时都太累了，换个状态也许根本不会发生", ["mao","chen"], {stability:2, confrontation:-1}),
-    O("我会反复复盘自己哪里可以做得更好", ["zheng","yang"], {devotion:2, stability:-1})]),
+    O("记下这次暴露的盲点，为下次准备更稳妥的做法", ["zheng","yang"], {devotion:2, stability:-1})]),
   Q("旅程终章", "下一次出发", "同样七个人再次邀你旅行，你最需要改变的是？", [
     O("更早说出需求，不等别人自动理解", ["yang","xu"], {expression:2, boundary:2}),
     O("少承担一点，让责任真正流动起来", ["zheng","jing"], {boundary:2, stability:1}),
@@ -202,7 +202,7 @@ function loadExtraQuestions() {
   if (extraQuestionsPromise) return extraQuestionsPromise;
   extraQuestionsPromise = new Promise(resolve => {
     const script = document.createElement("script");
-    script.src = "questions-extra.js?v=20260904-speed5";
+    script.src = "questions-extra.js?v=20260904-balance31";
     script.onload = script.onerror = () => { QUESTION_BANK = makeQuestionBank(); resolve(); };
     document.head.appendChild(script);
   });
@@ -380,7 +380,7 @@ function calculate() {
   return {
     primary: ranking[0][0], secondary: ranking[1][0], ranking, rawScores: people,
     rawDimensions: dims, calibratedDimensions: calibratedDims, dimensions: normalizedDims,
-    match: Math.min(96, Math.round(76 + Math.max(0, Math.min(1, gap / 1.8)) * 20)),
+    match: Math.min(95, Math.round(55 + (1 - Math.exp(-Math.max(0, gap) / 1.4)) * 40)),
     assessmentVersion: ASSESSMENT_VERSION,
     id: `HL-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`
   };
