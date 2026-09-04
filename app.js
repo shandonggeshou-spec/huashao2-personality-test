@@ -1,7 +1,9 @@
 const CONFIG = window.APP_CONFIG || {};
-const ASSESSMENT_VERSION = "3.1.0";
+const ASSESSMENT_VERSION = "3.2.0";
 const QUESTIONS_PER_TEST = 24;
 const QUESTIONS_PER_CHAPTER = 4;
+const RESPONSE_NORM_BLEND = .85;
+const CHAPTER_ORDER = ["出发之前", "路上协作", "关系升温", "冲突现场", "压力测试", "旅程终章"];
 
 const DIMENSIONS = [
   ["initiative", "主动掌控"],
@@ -190,9 +192,18 @@ const BASE_QUESTIONS = [
     O("不必改变太多，带着好奇心继续体验", ["chen","mao"], {initiative:1, stability:2})])
 ];
 
-const makeQuestionBank = () => [...BASE_QUESTIONS, ...(window.EXTRA_QUESTIONS || [])].map((question, index) => ({
-  ...question, id: `q${String(index + 1).padStart(3, "0")}`
-}));
+const makeQuestionBank = () => [...BASE_QUESTIONS, ...(window.EXTRA_QUESTIONS || [])].map((question, index) => {
+  const id = "q" + String(index + 1).padStart(3, "0");
+  const norms = window.RESPONSE_NORMS?.[id] || [];
+  return {
+    ...question,
+    id,
+    options: question.options.map((option, optionIndex) => ({
+      ...option,
+      baselineProbability: Number(norms[optionIndex]) || .25
+    }))
+  };
+});
 let QUESTION_BANK = makeQuestionBank();
 let QUESTIONS = [];
 let extraQuestionsPromise = null;
@@ -226,9 +237,8 @@ function shuffle(items) {
 }
 
 function buildQuestionSet() {
-  const chapters = shuffle([...new Set(QUESTION_BANK.map(question => question.chapter))]);
   let selected = [];
-  chapters.forEach(chapter => {
+  CHAPTER_ORDER.forEach(chapter => {
     selected.push(...shuffle(QUESTION_BANK.filter(question => question.chapter === chapter)).slice(0, QUESTIONS_PER_CHAPTER));
   });
   selected = selected.map(question => ({ ...question, options: shuffle(question.options) }));
@@ -243,23 +253,29 @@ function calculateBaselines(questions) {
   const profiles = Object.fromEntries(Object.keys(PROFILES).map(id => {
     let mean = 0, variance = 0;
     questions.forEach(question => {
+      const probabilities = question.options.map(option => .25 * (1 - RESPONSE_NORM_BLEND) + (option.baselineProbability || .25) * RESPONSE_NORM_BLEND);
+      const probabilityTotal = probabilities.reduce((sum, value) => sum + value, 0);
+      const normalized = probabilities.map(value => value / probabilityTotal);
       const possible = question.options.map(option => {
         const rank = option.people.indexOf(id);
         return rank < 0 ? 0 : (rank === 0 ? 3 : 2);
       });
-      const questionMean = possible.reduce((sum, value) => sum + value, 0) / possible.length;
+      const questionMean = possible.reduce((sum, value, index) => sum + value * normalized[index], 0);
       mean += questionMean;
-      variance += possible.reduce((sum, value) => sum + ((value - questionMean) ** 2), 0) / possible.length;
+      variance += possible.reduce((sum, value, index) => sum + normalized[index] * ((value - questionMean) ** 2), 0);
     });
     return [id, { mean, variance: Math.max(variance, .0001) }];
   }));
   const dimensions = Object.fromEntries(DIMENSIONS.map(([id]) => {
     let mean = 0, variance = 0;
     questions.forEach(question => {
+      const probabilities = question.options.map(option => .25 * (1 - RESPONSE_NORM_BLEND) + (option.baselineProbability || .25) * RESPONSE_NORM_BLEND);
+      const probabilityTotal = probabilities.reduce((sum, value) => sum + value, 0);
+      const normalized = probabilities.map(value => value / probabilityTotal);
       const possible = question.options.map(option => option.dims[id] || 0);
-      const questionMean = possible.reduce((sum, value) => sum + value, 0) / possible.length;
+      const questionMean = possible.reduce((sum, value, index) => sum + value * normalized[index], 0);
       mean += questionMean;
-      variance += possible.reduce((sum, value) => sum + ((value - questionMean) ** 2), 0) / possible.length;
+      variance += possible.reduce((sum, value, index) => sum + normalized[index] * ((value - questionMean) ** 2), 0);
     });
     return [id, { mean, variance: Math.max(variance, .0001) }];
   }));

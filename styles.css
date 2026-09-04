@@ -282,7 +282,7 @@ textarea { resize: vertical; }
   .result-main h2 { margin-top: 2px; font-size: 55px; letter-spacing: .07em; }
   .result-main h3 { margin-top: 12px; padding: 7px 10px 6px; font-size: 14px; }
   .result-explanation-hero { margin-top: 14px; font-size: 14px; line-height: 1.75; }
-  .match-seal { width: 60px; height: 60px; right: -12px; top: 0; }
+  .match-seal { width: 60px; height: 60px; right: 0; top: 0; }
   .match-seal strong { font-size: 21px; }
   .match-seal small { margin-top: 2px; font-size: 7px; }
   .result-summary { margin-top: 16px; padding: 16px 35px 16px 27px; font-size: 17px; line-height: 1.7; }
@@ -302,7 +302,7 @@ textarea { resize: vertical; }
   .result-profile { grid-template-columns: 40% minmax(0, 1fr); gap: 9px; }
   .result-main h2 { font-size: 49px; letter-spacing: .055em; }
   .result-explanation-hero { font-size: 13px; }
-  .match-seal { right: -10px; top: 0; width: 56px; height: 56px; }
+  .match-seal { right: 0; top: 0; width: 56px; height: 56px; }
   .match-seal strong { font-size: 19px; }
 }
 @media (max-width: 680px) and (min-height: 761px) {
