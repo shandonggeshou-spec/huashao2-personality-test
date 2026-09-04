@@ -456,7 +456,7 @@ function renderResult(result) {
 function drawRadar(values, color) {
   const canvas = $("#radar-canvas");
   const dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth <= 680 ? 1.5 : 2);
-  const cssWidth = Math.min(520, canvas.parentElement.clientWidth);
+  const cssWidth = Math.max(1, Math.min(520, canvas.parentElement.getBoundingClientRect().width, window.innerWidth - 40));
   const cssHeight = Math.round(cssWidth * .8);
   canvas.style.width = `${cssWidth}px`; canvas.style.height = `${cssHeight}px`;
   canvas.width = cssWidth * dpr; canvas.height = cssHeight * dpr;
