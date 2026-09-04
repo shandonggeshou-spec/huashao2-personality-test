@@ -345,6 +345,11 @@ function renderQuestion() {
       <span class="option-letter">${String.fromCharCode(65 + index)}</span><span>${option.text}</span>
     </button>`).join("");
   $(".back-button").style.visibility = current ? "visible" : "hidden";
+  const nextButton = $(".next-button");
+  const allAnswered = QUESTIONS.length > 0 && QUESTIONS.every((_, index) => answers[index] !== undefined);
+  nextButton.textContent = current === QUESTIONS.length - 1
+    ? (allAnswered ? "查看结果 →" : "补全未答 →")
+    : "下一题 →";
   $$(".option").forEach(button => button.addEventListener("click", chooseOption));
 }
 
@@ -357,11 +362,24 @@ function chooseOption(event) {
   event.currentTarget.blur();
   window.setTimeout(() => {
     if (current < QUESTIONS.length - 1) { current += 1; renderQuestion(); }
-    else finishQuiz();
+    else {
+      const firstUnanswered = QUESTIONS.findIndex((_, index) => answers[index] === undefined);
+      if (firstUnanswered >= 0) { current = firstUnanswered; renderQuestion(); }
+      else finishQuiz();
+    }
   }, 220);
 }
 
 function previous() { if (current > 0) { current -= 1; renderQuestion(); } }
+function next() {
+  if (advancing) return;
+  if (current < QUESTIONS.length - 1) { current += 1; renderQuestion(); }
+  else {
+    const firstUnanswered = QUESTIONS.findIndex((_, index) => answers[index] === undefined);
+    if (firstUnanswered >= 0) { current = firstUnanswered; renderQuestion(); }
+    else finishQuiz();
+  }
+}
 
 function calculate() {
   const baselines = calculateBaselines(QUESTIONS);
@@ -503,7 +521,7 @@ function closeDialogs() { $$('dialog[open]').forEach(dialog => dialog.close()); 
 document.addEventListener("click", event => {
   const action = event.target.closest("[data-action]")?.dataset.action;
   if (!action) return;
-  ({ start: startQuiz, previous, restart: startQuiz, share: shareResult, "open-about": () => openDialog("#about-dialog"), "open-privacy": () => openDialog("#privacy-dialog"), "open-feedback": () => openDialog("#feedback-dialog"), "close-dialog": closeDialogs })[action]?.();
+  ({ start: startQuiz, previous, next, restart: startQuiz, share: shareResult, "open-about": () => openDialog("#about-dialog"), "open-privacy": () => openDialog("#privacy-dialog"), "open-feedback": () => openDialog("#feedback-dialog"), "close-dialog": closeDialogs })[action]?.();
 });
 $("#feedback-form").addEventListener("submit", submitFeedback);
 $$('dialog').forEach(dialog => dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); }));
