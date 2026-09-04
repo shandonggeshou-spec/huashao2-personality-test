@@ -9,9 +9,9 @@
   <meta name="theme-color" content="#ef5b3f">
   <title>花路人格局｜测测你的旅行人格</title>
   <link rel="preload" href="assets/fonts/zcool-xiaowei-critical.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20260904-avatar-fix">
+  <link rel="stylesheet" href="styles.css?v=20260904-result-redesign">
   <script defer src="config.js"></script>
-  <script defer src="app.js?v=20260904-speed5"></script>
+  <script defer src="app.js?v=20260904-result-redesign"></script>
 </head>
 <body data-screen="intro-screen">
   <div class="noise" aria-hidden="true"></div>
@@ -84,14 +84,17 @@
           <p class="result-id" id="result-id"></p>
         </div>
         <article class="result-hero" id="result-hero">
-          <div class="result-symbol" id="result-symbol"></div>
-          <div class="result-main">
-            <p>你是花少 2 中的</p>
-            <h2 id="result-name"></h2>
-            <h3 id="result-archetype"></h3>
-            <p class="result-summary" id="result-summary"></p>
+          <div class="result-profile">
+            <div class="result-symbol" id="result-symbol"></div>
+            <div class="result-main">
+              <p>你是七人旅行团里的</p>
+              <h2 id="result-name"></h2>
+              <h3 id="result-archetype"></h3>
+              <p class="result-explanation result-explanation-hero" id="result-explanation"></p>
+            </div>
           </div>
-          <div class="match-seal"><strong id="match-score">92</strong><span>% MATCH</span></div>
+          <div class="match-seal"><strong><span id="match-score">92</span>%</strong><small>MATCH</small></div>
+          <blockquote class="result-summary" id="result-summary"></blockquote>
         </article>
 
         <div class="result-grid">
@@ -101,7 +104,6 @@
           </section>
           <section class="panel detail-panel">
             <div class="panel-title"><span>02</span><h3>人格锐评</h3></div>
-            <p class="result-explanation" id="result-explanation"></p>
             <div class="trait-list" id="trait-list"></div>
           </section>
           <section class="panel wide-panel">

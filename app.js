@@ -420,7 +420,7 @@ function renderResult(result) {
   avatar.setAttribute("aria-label", `${profile.name}的手绘头像`);
   $("#result-name").textContent = profile.name;
   $("#result-archetype").textContent = profile.archetype;
-  $("#result-summary").textContent = `“${profile.quote}”`;
+  $("#result-summary").textContent = profile.quote;
   $("#result-explanation").textContent = profile.summary;
   $("#match-score").textContent = result.match;
   $("#result-hero").style.removeProperty("background");
